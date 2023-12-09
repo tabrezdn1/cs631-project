@@ -76,7 +76,7 @@ CREATE TABLE `buildings` (
 -- Dumping data for table `buildings`
 --
 
-INSERT INTO `buildings` (`building_id`, `name`, `type`) VALUES
+INSERT INTO `buildings` (`building_id`, `Bname`, `type`) VALUES
 (1, 'Main Zoo Building', 'Exhibit'),
 (2, 'Aviary', 'Aviary'),
 (3, 'Aquarium', 'Aquatic'),
