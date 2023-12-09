@@ -76,18 +76,18 @@
           <span>Food & Shopping</span>
           <button type="reset" onclick="popup('login-popup')">X</button>
         </h2>
-        <label for="food-item">Food Item:</label>
+        <label>Food Item:</label>
     				<select name="food-item" id="food-item">
         			<option value="FreshFries">FreshFries</option>
         			<option value="HotDog">HotDog</option>
-       		    <option value="Coffee">Coffee</option>
+       		     <option value="Coffee">Coffee</option>
         			<option value="Soda">Soda</option>
     				</select>
-            <div>
-            <label for="food-item-q">Quantity</label>
+
+            <label>Quantity</label>
             <input type="number" name="food-item-q">
-            </div>
-        <button type="submit" class="login-btn" name="login">PURCHASE</button>
+    				
+        <button type="submit" class="register-btn" name="purchase">PURCHASE</button>
       </form>
     </div>
   </div>
@@ -100,23 +100,12 @@
           <button type="reset" onclick="popup('register-popup')">X</button>
         </h2>
         <input type="text" placeholder="Full Name" name="fullname">
+        <input type="text" placeholder="Username" name="username">
         <input type="email" placeholder="E-mail" name="email">
+        <input type="text" placeholder="Address" name="address">
 	    <input type="text" placeholder="Phone Number" name="phone">
-      <label for="ticket-type">Type:</label>
-    				<select name="ticket-type" id="ticket-type">
-        			<option value="Admit">Zoo Admission</option>
-        			<option value="show1">show1</option>
-       		    <option value="show2">show2</option>
-        			<option value="show3">show3</option>
-    				</select>
-            <div>
-            <label for="ticket-for">Ticket for:</label>
-    				<select name="ticket-for" id="ticket-for">
-        			<option value="Adult">Adult</option>
-        			<option value="Child">Child</option>
-       		    <option value="Senior">Senior</option>
-    				</select>
-            </div>
+		<input type="text" placeholder="Credit Card Number" name="credit">
+	   <input type="password" placeholder="Password" name="password">
         <button type="submit" class="register-btn" name="register">BUY TICKETS</button>
       </form>
     </div>

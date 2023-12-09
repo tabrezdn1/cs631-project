@@ -3,6 +3,34 @@
 require('connection.php');
 session_start();
 
+if(isset($_POST['purchase']))
+{
+    $item=mysqli_real_escape_string($conn,$_POST['food-item']);
+    $quantity=mysqli_real_escape_string($conn,$_POST['food-item-q']);
+
+    $query ="INSERT INTO `revenue_types` (`name`, `type`, `building_id`, `senior_price`, `adult_price`, `child_price`, `product`, `shows_per_day`) VALUES ('$item','Concession','1', '0','0','0','food','0')";
+    $result= mysqli_query($conn,$query);
+    
+    if($result)
+    {
+        echo "
+        <script>
+            alert('$item - $quantity Successfully Added to Cart!');
+            window.location.href='index.php';
+        </script>
+        ";
+    }
+    else
+    {
+        echo "
+        <script>
+            alert('Cannot run query');
+            window.location.href='index.php';
+        </script>
+        ";
+    }
+ }
+
 if(isset($_POST['login']))
 {
    $email_username = mysqli_real_escape_string($conn, $_POST['email_username']);
