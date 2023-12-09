@@ -68,7 +68,7 @@ INSERT INTO `animal` (`animal_id`, `status`, `birth_year`, `species_id`, `enclos
 
 CREATE TABLE `buildings` (
   `building_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `Bname` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
