@@ -102,11 +102,11 @@
         <input type="text" placeholder="Full Name" name="fullname">
         <input type="email" placeholder="E-mail" name="email">
         <label for="ticket-type">Type:</label>
-    				<select name="ticket-type" id="ticket-type">
-        			<option value="Admit">Zoo Admission</option>
-        			<option value="show1">show1</option>
-       		    <option value="show2">show2</option>
-        			<option value="show3">show3</option>
+    				<select name="ticket-name" id="ticket-name">
+        			<option value="Zoo Admission">Zoo Admission</option>
+        			<option value="Bird Show">Bird Show</option>
+       		    <option value="Aquarium Tour">Aquarium Tour</option>
+        			<option value="Penguin Parade">Penguin Parade</option>
     				</select>
             <div>
             <label for="ticket-for">Ticket for:</label>
@@ -116,7 +116,8 @@
        		    <option value="Senior">Senior</option>
     				</select>
             </div>
-	    <input type="text" placeholder="Phone Number" name="phone">
+            <label>Quantity</label>
+            <input type="number" name="ticket-q">
         <button type="submit" class="register-btn" name="register">BUY TICKETS</button>
       </form>
     </div>

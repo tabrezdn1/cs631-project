@@ -8,7 +8,7 @@ if(isset($_POST['purchase']))
     $item=mysqli_real_escape_string($conn,$_POST['food-item']);
     $quantity=mysqli_real_escape_string($conn,$_POST['food-item-q']);
 
-    $query ="INSERT INTO `revenue_types` (`name`, `type`, `building_id`, `senior_price`, `adult_price`, `child_price`, `product`, `shows_per_day`) VALUES ('$item','Concession','1', '0','0','0','food','0')";
+    $query ="INSERT INTO `revenue_types` (`name`, `type`, `building_id`, `senior_price`, `adult_price`, `child_price`, `product_name`, `shows_per_day`, `product_quantity`, `senior_quantity` , `adult_quantity`, `child_quantity`) VALUES ('$item','Concession','1', '0','0','0','food','0','$quantity','0','0','0')";
     $result= mysqli_query($conn,$query);
     
     if($result)
@@ -87,76 +87,130 @@ if(isset($_POST['login']))
 
 if(isset($_POST['register']))
 {
-    $username=mysqli_real_escape_string($conn,$_POST['username']);
-    $email=mysqli_real_escape_string($conn,$_POST['email']);
+        $fullname=mysqli_real_escape_string($conn,$_POST['fullname']);
+        $email=mysqli_real_escape_string($conn,$_POST['email']);
+        $ticket_name=mysqli_real_escape_string($conn,$_POST['ticket-name']);
+        $ticket_for=mysqli_real_escape_string($conn,$_POST['ticket-for']);
+        $quantity=mysqli_real_escape_string($conn,$_POST['ticket-q']);
 
-    $user_exist_query="SELECT * FROM `customer` WHERE `Username`='$username' OR `Email`='$email'";
-    $result=mysqli_query($conn,$user_exist_query);
-    
-    if($result)
-    {
-        if(mysqli_num_rows($result)>0)
+        if($ticket_for=='Senior'){ $ticket_for='senior_price';}
+        if($ticket_for=='Adult'){ $ticket_for='adult_price';}
+        if($ticket_for=='Child'){ $ticket_for='child_price';}
+
+        $query= "SELECT * FROM `revenue_types` where name='$ticket_name'";
+        $result = mysqli_query($conn, $query);
+
+        if ($result) {
+            // Fetch the row as an associative array
+            $row = mysqli_fetch_assoc($result);
+
+            // Access column values using the column names
+            $price = $row[$ticket_for];
+            $revenue_id = $row['revenue_id'];
+            $revenue= $price * $quantity;
+            $type = $row['type'];
+
+            // Free the result set
+            mysqli_free_result($result);
+        } 
+        $d=mktime(10, 14, 54, 8, 12, 2015);
+        $date=date("Y-m-d h:i:s", $d);
+        $insert_query= "INSERT INTO `revenue_events` (`date_time`, `revenue_id`, `revenue`, `tickets_sold`, `name`, `type`) VALUES ('$date','$revenue_id', '$revenue', '$quantity', '$ticket_name', '$type')";
+        // //$query ="INSERT INTO `revenue_types` (`name`, `type`, `building_id`, `senior_price`, `adult_price`, `child_price`, `product_name`, `shows_per_day`, `product_quantity`, `senior_quantity` , `adult_quantity`, `child_quantity`) VALUES ('$ticket_type','$ticket_type','0', '$senior_price','$adult_price','$child_price','','0','0','$senior_quantity','$adult_quantity','$child_quantity')";
+        
+        if(mysqli_query($conn,$insert_query))
         {
-            $result_fetch=mysqli_fetch_assoc($result);
-            if($result_fetch['Username']==$username)
-            {
-                echo "
-                <script>
-                    alert('$username - Username already taken');
-                    window.location.href='index.php';
-                </script>
-                ";
-            }   
-            else
-            {
-                echo "
-                <script>
-                    alert('$email - Email already taken');
-                    window.location.href='index.php';
-                </script>
-                ";
-            }
+            echo "
+            <script>
+                alert('$quantity Tickets Booked Successful');
+                window.location.href='index.php';
+            </script>
+            ";
         }
         else
         {
-            $fullname=mysqli_real_escape_string($conn,$_POST['fullname']);
-            $address=mysqli_real_escape_string($conn,$_POST['address']);
-            $phone=mysqli_real_escape_string($conn,$_POST['phone']);
-            $credit=mysqli_real_escape_string($conn,$_POST['credit']);
-            $password=mysqli_real_escape_string($conn,$_POST['password']);
-
-            $query ="INSERT INTO `customer`(`Name`, `Address`, `Phone_Number`, `Credit_Card_No`, `Email`, `Password`, `Username`) VALUES ('$fullname','$address','$phone','$credit','$email','$password','$username')";
-            
-            if(mysqli_query($conn,$query))
-            {
-                echo "
-                <script>
-                    alert('Registration Successful');
-                    window.location.href='index.php';
-                </script>
-                ";
-            }
-            else
-            {
-                echo "
-                <script>
-                    alert('Cannot run query');
-                    window.location.href='index.php';
-                </script>
-                ";
-            }
+            echo "
+            <script>
+                alert('Cannot run query');
+                window.location.href='index.php';
+            </script>
+            ";
         }
-    }
-    else
-    {
-        echo "
-        <script>
-            alert('Cannot run query');
-            window.location.href='index.php';
-        </script>
-        ";
-    }
+
 }
+
+// if(isset($_POST['register_temp']))
+// {
+//     $username=mysqli_real_escape_string($conn,$_POST['username']);
+//     $email=mysqli_real_escape_string($conn,$_POST['email']);
+
+//     $user_exist_query="SELECT * FROM `customer` WHERE `Username`='$username' OR `Email`='$email'";
+//     $result=mysqli_query($conn,$user_exist_query);
+    
+//     if($result)
+//     {
+//         if(mysqli_num_rows($result)>0)
+//         {
+//             $result_fetch=mysqli_fetch_assoc($result);
+//             if($result_fetch['Username']==$username)
+//             {
+//                 echo "
+//                 <script>
+//                     alert('$username - Username already taken');
+//                     window.location.href='index.php';
+//                 </script>
+//                 ";
+//             }   
+//             else
+//             {
+//                 echo "
+//                 <script>
+//                     alert('$email - Email already taken');
+//                     window.location.href='index.php';
+//                 </script>
+//                 ";
+//             }
+//         }
+//         else
+//         {
+//             $fullname=mysqli_real_escape_string($conn,$_POST['fullname']);
+//             $address=mysqli_real_escape_string($conn,$_POST['address']);
+//             $phone=mysqli_real_escape_string($conn,$_POST['phone']);
+//             $credit=mysqli_real_escape_string($conn,$_POST['credit']);
+//             $password=mysqli_real_escape_string($conn,$_POST['password']);
+
+//             $query ="INSERT INTO `customer`(`Name`, `Address`, `Phone_Number`, `Credit_Card_No`, `Email`, `Password`, `Username`) VALUES ('$fullname','$address','$phone','$credit','$email','$password','$username')";
+            
+//             if(mysqli_query($conn,$query))
+//             {
+//                 echo "
+//                 <script>
+//                     alert('Registration Successful');
+//                     window.location.href='index.php';
+//                 </script>
+//                 ";
+//             }
+//             else
+//             {
+//                 echo "
+//                 <script>
+//                     alert('Cannot run query');
+//                     window.location.href='index.php';
+//                 </script>
+//                 ";
+//             }
+//         }
+//     }
+//     else
+//     {
+//         echo "
+//         <script>
+//             alert('Cannot run query');
+//             window.location.href='index.php';
+//         </script>
+//         ";
+//     }
+// }
 
 if(isset($_POST['admin']))
 {
