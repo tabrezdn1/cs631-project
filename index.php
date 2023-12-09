@@ -80,13 +80,13 @@
     				<select name="food-item" id="food-item">
         			<option value="FreshFries">FreshFries</option>
         			<option value="HotDog">HotDog</option>
-       		     <option value="Coffee">Coffee</option>
+       		    <option value="Coffee">Coffee</option>
         			<option value="Soda">Soda</option>
     				</select>
-
+            <div>
             <label for="food-item-q">Quantity</label>
             <input type="number" name="food-item-q">
-    				
+            </div>
         <button type="submit" class="login-btn" name="login">PURCHASE</button>
       </form>
     </div>
