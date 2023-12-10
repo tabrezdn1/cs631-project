@@ -142,28 +142,9 @@ session_start();
 
 				</div>
 			</div>
-			<div class="col-lg-6">
+			<div class="col-lg-12">
 				<div class="card">
-					<div class="card-header">All Appointments</div>
-					<div class="card-body">
-						<a href="view-appointment.php"><button type="button" class="btn btn-primary">View Appointments</button></a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="card">
-					<div class="card-header">Prices </div>
-					<div class="card-body">
-						<div class="d-flex justify-content-between">
-							<a href="part-price-update.php"><button type="button" class="btn btn-primary">Update Part Price</button></a>
-							<a href="service-price-update.php"><button type="button" class="btn btn-primary">Update Service Price</button></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="card">
-					<div class="card-header">Statistics</div>
+					<div class="card-header">Reports and Statistics</div>
 					<div class="card-body">
 						<div class="d-flex justify-content-between">
 							<a href="Report1.php"><button type="button" class="btn btn-primary" name="report1">Report 1</button></a>
