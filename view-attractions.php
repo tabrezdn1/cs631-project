@@ -1,7 +1,7 @@
 <?php
 include 'connection.php';
 
-  $sql =  "SELECT * FROM buildings b join revenue_types r on b.building_id=r.building_id";
+  $sql =  "SELECT * FROM buildings b join revenue_types r where b.building_id=r.building_id AND Rtype='Animal Shows'";
   $result = mysqli_query($conn, $sql);
 
 ?>
