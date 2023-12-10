@@ -122,27 +122,7 @@ revenue for each attraction, concession, and total attendance</p>
 				<label for="end_date">End Date:</label>
 				<input type="date" class="form-control" name="end_date" required>
 			</div>
-			<div class="form-group">
-				<label for="attraction">Select Attraction:</label>
-				<select name="attraction" id="attraction">
-				<option value="">Select Attraction</option>
-              	<?php echo $show_options; ?>
-    			</select>
-			</div>	
-			<div class="form-group">
-				<label for="concession">Select Concession:</label>
-				<select name="concession" id="concession">
-				<option value="">Select Concession</option>
-              	<?php echo $con_options; ?>
-    			</select>
-			</div>
-			<div class="form-group">
-			<label for="zoo">Zoo Attendance:</label>
-				<select name="zoo" id="zoo">
-				<option value="">No</option>
-				<option value="Yes">Yes</option>
-				</select>
-			</div>
+			
 			<button type="submit" name="submit" class="btn btn-primary">Generate Report</button>
 		</form>
 
