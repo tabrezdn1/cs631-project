@@ -66,9 +66,10 @@ $result = mysqli_query($conn, $query);
 									<option value="Sick">Sick</option>
 									<option value="Healthy">Healthy</option>
 								</select>
-							</div>
-							<input type="hidden" name="aid" value="<?php echo $row['animal_id']; ?>">
+								<input type="hidden" name="aid" value="<?php echo $row['animal_id']; ?>">
 							<input type="submit" name="update_animal" value="Update">
+							</div>
+							
 						</form>
 					</td>
 					<td><?php echo $row['Bname']; ?></td>
@@ -94,7 +95,7 @@ $result = mysqli_query($conn, $query);
 	if (isset($_POST['update_animal'])) {
 		$aid = $_POST['aid'];
 		$status = $_POST['statusOpt'];
-		$query = "UPDATE animal SET status ='$status' WHERE animal_id = $aid";
+		$query = "UPDATE animal SET Astatus ='$status' WHERE animal_id = $aid";
 		mysqli_query($conn, $query);
 		//header("Refresh:5");
 	}

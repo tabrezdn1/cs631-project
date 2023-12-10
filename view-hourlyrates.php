@@ -25,6 +25,18 @@ include 'connection.php';
     th {
       background-color: #f2f2f2;
     }
+    button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #3e8e41;
+		}
   </style>
 </head>
 <body>
@@ -74,7 +86,6 @@ include 'connection.php';
   }
   ?>
 
-  <a href="admin.php"><button>Back</button></a>
-  
+<button onclick="window.location.href='admin.php'">Back</button>
 </body>
 </html>

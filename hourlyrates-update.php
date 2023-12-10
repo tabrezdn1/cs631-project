@@ -42,6 +42,7 @@ $result = mysqli_query($conn, $query);
 			<tr>
 				<th>Hourly Rate ID</th>
 				<th>Rate</th>
+				<th>Update Rate</th>
 				
 				
 			</tr>

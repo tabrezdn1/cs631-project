@@ -81,9 +81,10 @@ $result = mysqli_query($conn, $query);
 									<option value="Trainer">Trainer</option>
 									
 								</select>
-							</div>
-							<input type="hidden" name="eid" value="<?php echo $row['emp_id']; ?>">
+								<input type="hidden" name="eid" value="<?php echo $row['emp_id']; ?>">
 							<input type="submit" name="update_employee_job_type" value="Update">
+							</div>
+							
 						</form>
 					</td>
 					<td><?php echo $row['name']; ?></td>
@@ -98,9 +99,10 @@ $result = mysqli_query($conn, $query);
 									<option value="3">$30.00</option>
 									<option value="4">$50.00</option>
 								</select>
-							</div>
-							<input type="hidden" name="eid" value="<?php echo $row['emp_id']; ?>">
+								<input type="hidden" name="eid" value="<?php echo $row['emp_id']; ?>">
 							<input type="submit" name="update_employee_hourly_rate" value="Update">
+							</div>
+							
 						</form>
 					</td>
 					<td>

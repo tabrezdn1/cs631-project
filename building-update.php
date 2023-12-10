@@ -62,9 +62,10 @@ $result = mysqli_query($conn, $query);
 									<option value="Aquatic">Aquatic</option>
 									<option value="Interactive">Interactive</option>
 								</select>
-							</div>
-							<input type="hidden" name="bid" value="<?php echo $row['building_id']; ?>">
+								<input type="hidden" name="bid" value="<?php echo $row['building_id']; ?>">
 							<input type="submit" name="update_animal" value="Update">
+							</div>
+							
 						</form>
 					</td>
 					
