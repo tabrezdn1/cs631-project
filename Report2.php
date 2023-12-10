@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Revenue by Location and Service Type</title>
+	<title>Report of the animal population by species</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<!-- Custom CSS -->
