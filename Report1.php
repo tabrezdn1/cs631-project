@@ -98,20 +98,27 @@ subtotals</p>
 		if(isset($_POST['submit'])) {
 			$date = $_POST['start_date'];
 
-            $query = "SELECT DISTINCT AppointmentID, CustomerID, VIN, A.LocID, Date, Status FROM Appointment A,Location L WHERE Date='$date' AND L.Address='$location' AND Status='Service Started' OR Status='Scheduled'";
+            $query = "SELECT revenue, name, quantity, type from revenue_events group by type";
+			// we need to add date for day in the above query should be similar to report 5 just dont need avg and also source is revenue_type.type column [Animal Show, Concession, Zoo admission]
+			$result = mysqli_query($conn, $query);
 
-$result = mysqli_query($conn, $query);
-
-if (mysqli_num_rows($result) > 0) {
-    echo "<h3 class='report-heading'>Pending Service Appointments for $date at Location $location:</h3>";
-    echo "<table class='report-table'><tr><th>Appointment ID</th><th>Customer ID</th><th>VIN</th><th>Date</th><th>Status</th></tr>";
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr><td>".$row['AppointmentID']."</td><td>".$row['CustomerID']."</td><td>".$row['VIN']."</td><td>".$row['Date']."</td><td>".$row['Status']."</td></tr>";
-    }
-    echo "</table>";
+			if(mysqli_num_rows($result) > 0) {
+				echo '<table class="table table-striped">';
+				echo '<thead><tr><th>Revenue</th><th>Name</th><th>Type</th></tr></thead>';
+				echo '<tbody>';
+				while($row = mysqli_fetch_assoc($result)) {
+				echo '<tr>';
+				echo '<td>'.$row['revenue'].'</td>';
+				echo '<td>'.$row['name'].'</td>';
+				echo '<td>'.$row['type'].'</td>';
+				echo '</tr>';
+				}
+echo '</tbody></table>';
 } else {
-    echo "<h3 class='report-heading'>No pending service appointments found for $date at Location $location.</h3>";
+echo '<p>No transactions found.</p>';
 }
+
+
 } 
 ?>
 
