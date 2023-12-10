@@ -122,8 +122,8 @@ animal care specialists (assume a 40 hour work week)</p>
 			SUM(CASE WHEN a.Astatus = 'Adult' THEN 1 ELSE 0 END) AS adult_animals,
 			SUM(CASE WHEN a.Astatus IS NULL THEN 1 ELSE 0 END) AS unknown_status,
 			SUM(s.food_cost) AS total_monthly_food_cost,
-			SUM(CASE WHEN e.job_type = 'Veterinarian' THEN hr.rate * 40 ELSE 0 END) AS total_hourly_cost_veterinarians,
-			SUM(CASE WHEN e.job_type = 'Caretaker' THEN hr.rate * 40 ELSE 0 END) AS total_hourly_cost_animal_care_specialists FROM
+			SUM(CASE WHEN e.job_type = 'Veterinarians' THEN hr.rate * 40 ELSE 0 END) AS total_hourly_cost_veterinarians,
+			SUM(CASE WHEN e.job_type = 'Animal care specialists' THEN hr.rate * 40 ELSE 0 END) AS total_hourly_cost_animal_care_specialists FROM
 			animal a
 		JOIN
 			species s ON a.species_id = s.species_id
