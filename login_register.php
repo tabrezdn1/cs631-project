@@ -17,7 +17,7 @@ if(isset($_POST['purchase']))
         $price = $row['product_price'];
         $revenue_id = $row['revenue_id'];
         $revenue= $price * $quantity;
-        $type = $row['type'];
+        $type = $row['Rtype'];
 
         mysqli_free_result($result);
     } 
@@ -121,7 +121,7 @@ if(isset($_POST['register']))
             $price = $row[$ticket_for];
             $revenue_id = $row['revenue_id'];
             $revenue= $price * $quantity;
-            $type = $row['type'];
+            $type = $row['Rtype'];
 
             mysqli_free_result($result);
         } 
