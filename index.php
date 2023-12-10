@@ -36,9 +36,7 @@
       z-index: 9999;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-    }/*
-    *{font-family: 'Merienda', cursive;}
-    .h-font{font-family: 'Poppins', sans-serif;}*/
+    }
     
         
   </style>
@@ -50,16 +48,7 @@
     <h2>Turtleback Zoo</h2>
    
     <?php
-    /*
-      if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true)
-      {
-          echo "
-          <div class='user'>
-            $_SESSION[username] - <a href='logout.php'> LOGOUT</a>
-          </div>
-          ";
-      }
-      */
+    
       if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true) {
         echo "<div class='dropdown'>
                   <button class='btn dropdown-toggle' type='button' id='userDropdown' data-bs-toggle='dropdown' aria-expanded='false' style='color: white;'>
@@ -206,7 +195,6 @@
         <img src="https://images.unsplash.com/photo-1602097944182-c43423a8056d?q=80&w=3774&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Concessions</h5>
-          <h6> $70 </h6>
           <p class="card-text">Culinary delights for zoo visitors, from snacks to meals.</p>
         </div>
       </div>
