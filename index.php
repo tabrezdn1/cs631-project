@@ -1,6 +1,23 @@
 <?php
   require('connection.php');
   session_start();
+
+  $query = "SELECT * FROM `revenue_types` where type='Animal Shows' or type='Zoo Admission' "; 
+  $result = mysqli_query($conn, $query);
+
+  $options = "";
+  while ($row = $result->fetch_assoc()) {
+      $options .= "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
+  }
+
+  $food_query = "SELECT * FROM `revenue_types` where type='Concession' "; 
+  $result = mysqli_query($conn, $food_query);
+
+  $food_options = "";
+  while ($row = $result->fetch_assoc()) {
+      $food_options .= "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -78,10 +95,7 @@
         </h2>
         <label>Food Item:</label>
     				<select name="food-item" id="food-item">
-        			<option value="FreshFries">FreshFries</option>
-        			<option value="HotDog">HotDog</option>
-       		     <option value="Coffee">Coffee</option>
-        			<option value="Soda">Soda</option>
+              <?php echo $food_options; ?>
     				</select>
             <div>
             <label>Quantity</label>
@@ -103,10 +117,7 @@
         <input type="email" placeholder="E-mail" name="email">
         <label for="ticket-type">Type:</label>
     				<select name="ticket-name" id="ticket-name">
-        			<option value="Zoo Admission">Zoo Admission</option>
-        			<option value="Bird Show">Bird Show</option>
-       		    <option value="Aquarium Tour">Aquarium Tour</option>
-        			<option value="Penguin Parade">Penguin Parade</option>
+              <?php echo $options; ?>
     				</select>
             <div>
             <label for="ticket-for">Ticket for:</label>
@@ -175,8 +186,8 @@
   </script>
 
 <br>
-<h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Turtleback Zoo SERVICES</h2>
-<h3 class="text-center"> We provide following Services.</h3> <br><br>
+<h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Turtleback Zoo Services</h2>
+<h3 class="text-center"> We provide the following services.</h3> <br><br>
 
 <div class="container"> 
   <div class="row"> 
