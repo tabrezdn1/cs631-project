@@ -81,6 +81,7 @@ $result = mysqli_query($conn, $query);
 								<option value="Maintenance">Maintenance</option>
 								<option value="Assistant">Assistant</option>
 								<option value="Ticket Seller">Ticket Seller</option>
+								<option value="Customer Service">Customer Service</option>
 									
 								</select>
 								<input type="hidden" name="eid" value="<?php echo $row['emp_id']; ?>">
