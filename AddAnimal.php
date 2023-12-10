@@ -1,6 +1,29 @@
 <?php
 require('connection.php'); // Include your database connection file
 
+$query1= "SELECT * FROM  `species`  "; 
+    $result = mysqli_query($conn, $query1);
+  
+    $speciesOptions = "";
+    while ($row = $result->fetch_assoc()) {
+        $speciesOptions .= "<option value='" . $row['species_id'] . "'>" . $row['name'] . "</option>";
+    }
+
+    $query2= "SELECT * FROM  `buildings`  "; 
+    $result = mysqli_query($conn, $query2);
+  
+    $buildingOptions = "";
+    while ($row = $result->fetch_assoc()) {
+        $buildingOptions .= "<option value='" . $row['building_id'] . "'>" . $row['Bname'] . "</option>";
+    }
+
+    $query3= "SELECT * FROM  `enclosures`  "; 
+    $result = mysqli_query($conn, $query3);
+  
+    $enclosureOptions = "";
+    while ($row = $result->fetch_assoc()) {
+        $enclosureOptions .= "<option value='" . $row['enclosure_id'] . "'>" . $row['sqft'] . " sq. ft</option>";
+    }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve user inputs
     $Aname = $_POST['Aname'];
@@ -11,7 +34,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $EType = $_POST['EType'];
 
     // Validate inputs (add more validation if needed)
-
+    // $query1= "SELECT * FROM  `species`  "; 
+    // $result = mysqli_query($conn, $query1);
+  
+    // $options = "";
+    // while ($row = $result->fetch_assoc()) {
+    //     $options .= "<option value='" . $row['species_id'] . "'>" . $row['name'] . "</option>";
+    // }
     // Insert data into the animal table
     $query = "INSERT INTO `animal` (`AName`, `birth_year`, `building_id`, `species_id`, `Astatus`, `enclosure_id`) 
     VALUES ('$Aname', '$Birth', '$BType', '$SType', '$Type', '$EType')";
@@ -68,12 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="SType">Species:</label>
                 <select class="form-control" name="SType" required>
                     <option value="">Select Species</option>
-                    <!-- Add options based on your actual species values -->
-                    <option value="1">Mammals</option>
-                    <option value="2">Reptiles</option>
-                    <option value="3">Amphibians</option>
-                    <option value="4">Birds</option>
-                    <option value="5">Fish</option>
+                    <?php echo $speciesOptions; ?>
                 </select>
             </div>
             <div class="form-group">
@@ -91,10 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <select class="form-control" name="BType" required>
                     <option value="">Select Building</option>
                     <!-- Add options based on your actual building values -->
-                    <option value="1">Main Zoo Building</option>
-                    <option value="3">Aquarium</option>
-                    <option value="2">Aviary</option>
-                    <option value="4">Reptile House</option>
+                    <?php echo $buildingOptions; ?>
                 </select>
             </div>
             <div class="form-group">
@@ -102,11 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <select class="form-control" name="EType" required>
                     <option value="">Select Enclosure</option>
                     <!-- Add options based on your actual building values -->
-                    <option value="1">5000</option>
-                    <option value="3">3000</option>
-                    <option value="2">7000</option>
-                    <option value="4">4000</option>
-                    <option value="5">5500</option>
+                    <?php echo $enclosureOptions; ?>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Add Animal</button>

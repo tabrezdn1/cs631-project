@@ -1,6 +1,20 @@
 <?php
 require('connection.php'); // Include your database connection file
+$query1= "SELECT * FROM  `hourly_rate`  "; 
+    $result = mysqli_query($conn, $query1);
+  
+    $hourlyRateOptions = "";
+    while ($row = $result->fetch_assoc()) {
+        $hourlyRateOptions .= "<option value='" . $row['hourly_rate_id'] . "'>$" . $row['rate'] . "</option>";
+    }
 
+    $query2= "SELECT * FROM  `revenue_types`  "; 
+    $result = mysqli_query($conn, $query2);
+  
+    $revenueTypesOptions = "";
+    while ($row = $result->fetch_assoc()) {
+        $revenueTypesOptions .= "<option value='" . $row['revenue_id'] . "'>" . $row['name'] . "</option>";
+    }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve user inputs
     $first_name = $_POST['first_name'];
@@ -38,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add Animal</title>
+    <title>Add Employee</title>
     <style>
     
     button {
@@ -111,10 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <select class="form-control" name="hourly_rate_id" required>
                     <option value="">Select Hourly Rate</option>
                     <!-- Add options based on your actual species values -->
-                    <option value="1">$15.50</option>
-                    <option value="2">$18.75</option>
-                    <option value="3">$30.00</option>
-                    <option value="4">$50.00</option>
+                    <?php echo $hourlyRateOptions; ?>
                   
                 </select>
             </div>
@@ -133,11 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <select class="form-control" name="revenue_id" required>
                     <option value="">Select Area</option>
                     <!-- Add options based on your actual species values -->
-                    <option value="1">Zoo Admission</option>
-                    <option value="2">Bird Show</option>
-                    <option value="3">Big Cat Show</option>
-                    <option value="4">Aquarium Tour</option>
-                    <option value="5">Safari Expedition</option>
+                    <?php echo $revenueTypesOptions; ?>
                     
                 </select>
             </div>
