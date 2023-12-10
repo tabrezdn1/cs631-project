@@ -117,7 +117,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <!-- Add options based on your actual species values -->
                     <option value="Assistant">Assistant</option>
                     <option value="Caretaker">Caretaker</option>
-                    <option value="Trainer">Trainer</option>
+                    <option value="Veterinarian">Veterinarian</option>
+                    <option value="Maintenance">Maintenance</option>
+                    <option value="Customer Service">Customer Service</option>
+                    <option value="Tikcet Seller">Ticket Seller</option>
                 </select>
             </div>
             <div class="form-group">
