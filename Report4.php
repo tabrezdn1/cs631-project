@@ -79,14 +79,10 @@
 	</style>
 </head>
 <body>
-	<h1>Best days (5)(in terms of total revenue)</h1>
-	<p>For a given month compute the best days (in terms of total revenue)</p>
+	<h1>5 best days (in terms of total revenue)</h1>
+	<p>For a given month compute the 5 best days (in terms of total revenue)</p>
 	<div class="container">
 		<form method="POST">
-		<div>
-            <label>Best day:</label>
-            	<input type="number" name="days">
-            </div>
 			<div class="form-group">
 				<label for="month">Month:</label>
 				<input type="month" class="form-control" name="month" required>

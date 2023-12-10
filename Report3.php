@@ -79,17 +79,12 @@
 	</style>
 </head>
 <body>
-	<h1>Top Attractions (3) (in terms of total revenue)</h1>
+	<h1>Top 3 attractions (in terms of total revenue)</h1>
 	<p>For a given time period (begin date and end date) compute the top 3
 attractions (in terms of total revenue) in descending order</p>
 	<div class="container">
 		<form method="POST">
-		<div>
-            <label>Top:</label>
-            <input type="number" name="attraction-qty">
-            </div>
 			<div class="form-group">
-				
 				<label for="start_date">Start Date:</label>
 				<input type="date" class="form-control" name="start_date" required>
 			</div>
