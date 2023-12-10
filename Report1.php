@@ -98,7 +98,7 @@ subtotals</p>
 		if(isset($_POST['submit'])) {
 			$date = $_POST['start_date'];
 
-            $query = "SELECT revenue, name, quantity, type from revenue_events group by type";
+            $query = "SELECT revenue, name, quantity, Rtype from revenue_events group by Rtype";
 			// we need to add date for day in the above query should be similar to report 5 just dont need avg and also source is revenue_type.type column [Animal Show, Concession, Zoo admission]
 			$result = mysqli_query($conn, $query);
 
@@ -110,7 +110,7 @@ subtotals</p>
 				echo '<tr>';
 				echo '<td>'.$row['revenue'].'</td>';
 				echo '<td>'.$row['name'].'</td>';
-				echo '<td>'.$row['type'].'</td>';
+				echo '<td>'.$row['Rtype'].'</td>';
 				echo '</tr>';
 				}
 echo '</tbody></table>';
