@@ -122,8 +122,8 @@ animal care specialists (assume a 40 hour work week)</p>
 			SUM(CASE WHEN a.Astatus = 'Adult' THEN 1 ELSE 0 END) AS adult_animals,
 			SUM(CASE WHEN a.Astatus IS NULL THEN 1 ELSE 0 END) AS unknown_status,
 			SUM(s.food_cost) AS total_monthly_food_cost,
-			SUM(CASE WHEN e.job_type = 'Veterinarians' THEN hr.rate * 40 ELSE 0 END) AS total_hourly_cost_veterinarians,
-			SUM(CASE WHEN e.job_type = 'Animal care specialists' THEN hr.rate * 40 ELSE 0 END) AS total_hourly_cost_animal_care_specialists FROM
+			SUM(CASE WHEN e.job_type = 'Veterinarian' THEN hr.rate * 40 ELSE 0 END) AS total_hourly_cost_veterinarians,
+			SUM(CASE WHEN e.job_type = 'Caretaker' THEN hr.rate * 40 ELSE 0 END) AS total_hourly_cost_animal_care_specialists FROM
 			animal a
 		JOIN
 			species s ON a.species_id = s.species_id
@@ -141,12 +141,12 @@ animal care specialists (assume a 40 hour work week)</p>
 
 		if(mysqli_num_rows($result) > 0) {
 			echo '<table class="table table-striped">';
-			echo '<thead><tr><th>Species</th><th>Population</th><th>Young Status</th><th>Adult Status</th><th>Total Montly Food Cost</th><th>Total Hourly Cost of Veterinarians</th><th>Total Hourly Cost of Animal Care Specialist</th></tr></thead>';
+			echo '<thead><tr><th>Species</th><th>Total Population</th><th>Young Status</th><th>Adult Status</th><th>Total Montly Food Cost</th><th>Total Cost of Veterinarians</th><th>Total Hourly Cost of Animal Care Specialist</th></tr></thead>';
 			echo '<tbody>';
 			while($row = mysqli_fetch_assoc($result)) {
 			echo '<tr>';
 			echo '<td>'.$row['species_name'].'</td>';
-			echo '<td>'.$row['population'].'</td>';
+			echo '<td>'.$row['total_animals'].'</td>';
 			echo '<td>'.$row['young_animals'].'</td>';  
 			echo '<td>'.$row['adult_animals'].'</td>';  
 			echo '<td>'.$row['total_monthly_food_cost'].'</td>';   
