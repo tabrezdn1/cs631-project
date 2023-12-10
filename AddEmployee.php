@@ -1,5 +1,5 @@
 <?php
-require('connection.php'); // Include your database connection file
+require('connection.php'); 
 $query1= "SELECT * FROM  `hourly_rate`  "; 
     $result = mysqli_query($conn, $query1);
   
@@ -29,8 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hourly_rate_id = $_POST['hourly_rate_id'];
     $sup_id = $_POST['sup_id'];
     $revenue_id = $_POST['revenue_id'];
-
-    // Validate inputs (add more validation if needed)
 
     // Insert data into the animal table
     $query = "INSERT INTO `employees` (`first_name`, `middle_name`, `last_name`, `start_date`, `street`, `city`, `state`, `zip`, `job_type`, `hourly_rate_id`, `sup_id`, `revenue_id`) 
@@ -114,20 +112,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="job_type">Job Type:</label>
                 <select class="form-control" name="job_type" required>
                     <option value="">Select Job Type</option>
-                    <!-- Add options based on your actual species values -->
-                    <option value="Assistant">Assistant</option>
-                    <option value="Caretaker">Caretaker</option>
+                    <option value="Caretaker">Animal Care Specialist</option>
                     <option value="Veterinarian">Veterinarian</option>
-                    <option value="Maintenance">Maintenance</option>
-                    <option value="Customer Service">Customer Service</option>
-                    <option value="Tikcet Seller">Ticket Seller</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="hourly_rate_id">Hourly Rate:</label>
                 <select class="form-control" name="hourly_rate_id" required>
                     <option value="">Select Hourly Rate</option>
-                    <!-- Add options based on your actual species values -->
                     <?php echo $hourlyRateOptions; ?>
                   
                 </select>
@@ -136,7 +128,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="sup_id">Supervisor:</label>
                 <select class="form-control" name="sup_id" required>
                     <option value="">Select Supervisor</option>
-                    <!-- Add options based on your actual species values -->
                     <option value="1">Manager</option>
                     <option value="2">Assistant</option>
                     
@@ -146,7 +137,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="revenue_id">Working Area:</label>
                 <select class="form-control" name="revenue_id" required>
                     <option value="">Select Area</option>
-                    <!-- Add options based on your actual species values -->
                     <?php echo $revenueTypesOptions; ?>
                     
                 </select>

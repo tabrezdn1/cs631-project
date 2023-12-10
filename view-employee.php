@@ -1,8 +1,6 @@
 <?php
 include 'connection.php';
 
-
-  // Default to today's date if no date is selected
   $sql =  "SELECT * FROM employees as E, hourly_rate as H, revenue_types as R where E.hourly_rate_id = H.hourly_rate_id AND E.revenue_id=R.revenue_id";
   $result = mysqli_query($conn, $sql);
 
@@ -65,24 +63,6 @@ include 'connection.php';
       $name =$row['name'];
       $rate = $row['rate'];
       
-
-      // // Get invoice details for the appointment
-      // $sql2 = "SELECT Service_Type, Vehicle_Type, Price FROM invoice_detail WHERE AppointmentID = '$appointmentID'";
-      // $result2 = mysqli_query($conn, $sql2);
-
-      // $services = array();
-      // // Store service details in array
-      // if (mysqli_num_rows($result2) > 0) {
-      //   while($row2 = mysqli_fetch_assoc($result2)) {
-      //     $serviceType = $row2['Service_Type'];
-      //     $vehicleType = $row2['Vehicle_Type'];
-      //     $price = $row2['Price'];
-      //     $services[] = "$serviceType ($vehicleType) - $price";
-      //   }
-      // }
-
-      // Display appointment details and associated invoice details
-      
        
         echo "<tr><td>$emp_id</td><td>$sup_id</td><td>$first_name</td><td>$middle_name</td><td>$last_name</td><td>$start_date</td><td>$street</td><td>$city</td><td>$state</td><td>$zip</td><td>$job_type</td><td>$name</td><td>$rate</td></tr>";
       
@@ -90,7 +70,6 @@ include 'connection.php';
     }
     echo "</table>";
   } else {
-    // No appointments found for selected date
     echo "No appointments found for ";
   }
   ?>

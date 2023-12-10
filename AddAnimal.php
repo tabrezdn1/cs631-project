@@ -1,5 +1,5 @@
 <?php
-require('connection.php'); // Include your database connection file
+require('connection.php'); 
 
 $query1= "SELECT * FROM  `species`  "; 
     $result = mysqli_query($conn, $query1);
@@ -33,14 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $BType = $_POST['BType'];
     $EType = $_POST['EType'];
 
-    // Validate inputs (add more validation if needed)
-    // $query1= "SELECT * FROM  `species`  "; 
-    // $result = mysqli_query($conn, $query1);
-  
-    // $options = "";
-    // while ($row = $result->fetch_assoc()) {
-    //     $options .= "<option value='" . $row['species_id'] . "'>" . $row['name'] . "</option>";
-    // }
+    
     // Insert data into the animal table
     $query = "INSERT INTO `animal` (`AName`, `birth_year`, `building_id`, `species_id`, `Astatus`, `enclosure_id`) 
     VALUES ('$Aname', '$Birth', '$BType', '$SType', '$Type', '$EType')";
@@ -114,7 +107,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="BType">Building :</label>
                 <select class="form-control" name="BType" required>
                     <option value="">Select Building</option>
-                    <!-- Add options based on your actual building values -->
                     <?php echo $buildingOptions; ?>
                 </select>
             </div>
@@ -122,7 +114,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="EType">Enclosure :</label>
                 <select class="form-control" name="EType" required>
                     <option value="">Select Enclosure</option>
-                    <!-- Add options based on your actual building values -->
                     <?php echo $enclosureOptions; ?>
                 </select>
             </div>

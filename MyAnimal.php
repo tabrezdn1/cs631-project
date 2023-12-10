@@ -147,20 +147,3 @@ unset($_SESSION['success']);
 </div>
 </body>
 </html>
-
-
-<!-- 
-
-
-<div class="form-group">
-              <label for="Type">Enclosure :</label>
-              <select class="form-control" name="EType">
-                  <option value="">Select Enclosure</option>
-                  <option value="1">5000</option>
-                  <option value="2">3000</option>
-                  <option value="3">7000</option>
-                  <option value="4">4000</option>
-                  <option value="5">5500</option>
-                </select>
-              </div>
- -->

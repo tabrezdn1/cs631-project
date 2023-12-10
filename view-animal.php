@@ -44,7 +44,6 @@ include 'connection.php';
   
 
   <?php
-  // Display table of appointments
   if (mysqli_num_rows($result) > 0) {
     echo "<table><tr><th>Name</th><th>Species</th><th>Birth Year </th><th>Status</th><th>Building</th><th>Enclosure </th></tr>";
     while($row = mysqli_fetch_assoc($result)) {
@@ -60,7 +59,6 @@ include 'connection.php';
        
         echo "<tr><td>$name</td><td>$species</td><td>$birth_year</td><td>$status</td><td>$building_id</td><td>$enclosure_id sq. ft</td></tr>";
       } else {
-        // Display appointment details without invoice details
         echo "<tr><td>$name</td><td>$species</td><td>$birth_year</td><td>$status</td><td>$building_id</td><td>No invoice details found</td></tr>";
       }
     }

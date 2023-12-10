@@ -43,7 +43,6 @@ include 'connection.php';
   
 
   <?php
-  // Display table of appointments
   if (mysqli_num_rows($result) > 0) {
     echo "<table><tr><th>RevenueID</th><th>Name</th><th>Type</th><th>Building Name</th><th>Senior Price</th><th>Adult Price</th><th>Child Price</th><th>Product Price</th><th>Shows per day</th></tr>";
     while($row = mysqli_fetch_assoc($result)) {

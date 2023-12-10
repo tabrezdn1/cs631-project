@@ -1,5 +1,5 @@
 <?php
-require('connection.php'); // Include your database connection file
+require('connection.php'); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve user inputs
@@ -7,8 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $Type = $_POST['Type'];
     
-
-    // Validate inputs (add more validation if needed)
 
     // Insert data into the animal table
     $query = "INSERT INTO `buildings` (`Bname`, `type`) 

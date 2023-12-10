@@ -1,5 +1,5 @@
 <?php
-require('connection.php'); // Include your database connection file
+require('connection.php'); 
 
 $query1= "SELECT * FROM  `revenue_types`  "; 
     $result = mysqli_query($conn, $query1);
@@ -99,7 +99,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="BType">Building :</label>
                 <select class="form-control" name="BType" required>
                     <option value="">Select Building</option>
-                    <!-- Add options based on your actual building values -->
                     <?php echo $buildingOptions; ?>
                 </select>
             </div>
@@ -107,7 +106,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="EType">Enclosure :</label>
                 <select class="form-control" name="EType" required>
                     <option value="">Select Enclosure</option>
-                    <!-- Add options based on your actual building values -->
                     <?php echo $enclosureOptions; ?>
                 </select>
             </div>
