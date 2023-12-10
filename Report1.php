@@ -99,7 +99,7 @@ subtotals</p>
 			$start_date = $_POST['start_date'];
 			$query = "SELECT name, sum(revenue) as revenue, sum(quantity) as quantity from revenue_events where date(date_time)='$start_date' group by name order by revenue desc";
 
-$result = mysqli_query($conn, $query);
+			$result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
     echo '<table class="table table-striped">';
@@ -109,10 +109,20 @@ if(mysqli_num_rows($result) > 0) {
       echo '<tr>';
       echo '<td>'.$row['name'].'</td>';
       echo '<td>'.$row['revenue'].'</td>';
-	  echo '<td>'.$row['quantity'].'</td>';  
+	  echo '<td>'.$row['quantity'].'</td>'; 
       echo '</tr>';
     }
 echo '</tbody></table>';
+
+echo '<label for="total">Total Revenue:</label>';
+	$query = "SELECT sum(revenue) as total, sum(quantity) as quantity from revenue_events where date(date_time)='$start_date'";
+	$result = mysqli_query($conn, $query);
+	$row = mysqli_fetch_assoc($result);
+	echo '<label>'.$row['total'].'</label>';
+	echo '<br>';
+	echo '<label for="total">Total Quantity:</label>';
+	echo '<label>'.$row['quantity'].'</label>';
+
 } else {
 echo '<p>No transactions found.</p>';
 }
