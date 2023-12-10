@@ -169,6 +169,8 @@ session_start();
 							<a href="Report1.php"><button type="button" class="btn btn-primary" name="report1">Report 1</button></a>
 							<a href="Report2.php"><button type="button" class="btn btn-primary" name="report2">Report 2</button></a>
 							<a href="Report3.php"><button type="button" class="btn btn-primary" name="report3">Report 3</button></a>
+							<a href="Report4.php"><button type="button" class="btn btn-primary" name="report4">Report 4</button></a>
+							<a href="Report5.php"><button type="button" class="btn btn-primary" name="report5">Report 5</button></a>
 						</div>
 					</div>
 

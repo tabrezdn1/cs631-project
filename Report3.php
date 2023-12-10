@@ -10,7 +10,7 @@
 			background-color: #f2f2f2;
 			font-family: Arial, sans-serif;
 		}
-		h1 {
+		h1,p {
 			text-align: center;
 			margin-top: 50px;
 		}
@@ -79,7 +79,9 @@
 	</style>
 </head>
 <body>
-	<h1>Revenue by Location and Service Type</h1>
+	<h1>Top 3 attractions (in terms of total revenue)</h1>
+	<p>For a given time period (begin date and end date) compute the top 3
+attractions (in terms of total revenue) in descending order</p>
 	<div class="container">
 		<form method="POST">
 			<div class="form-group">
@@ -133,6 +135,6 @@ crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
-<button onclick="window.location.href='admin.php'">Back</button>
+<button class="btn btn-primary" onclick="window.location.href='admin.php'">Back</button>
 </html>
 

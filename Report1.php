@@ -10,7 +10,7 @@
 			background-color: #f2f2f2;
 			font-family: Arial, sans-serif;
 		}
-		h1 {
+		h1,p {
 			text-align: center;
 			margin-top: 50px;
 		}
@@ -79,21 +79,14 @@
 	</style>
 </head>
 <body>
-	<h1>Pending Service Appointments Report</h1>
+	<h1>Report of the revenue by source</h1>
+	<p>For a given day, a report of the revenue by source, with detail lines and
+subtotals</p>
 	<div class="container">
 		<form method="POST">
 			<div class="form-group">
 				<label for="start_date">Select Date:</label>
 				<input type="date" class="form-control" name="start_date" required>
-			</div>
-			<div>
-			<label for="location">Location:</label>
-    				<select name="location" id="location">
-        			<option value="Newark">Newark</option>
-        			<option value="Harrison">Harrison</option>
-       		     <option value="Kearny">Kearny</option>
-        			<option value="Newyork">Newark</option>
-    				</select>
 			</div>
 			<button type="submit" name="submit" class="btn btn-primary">Generate Report</button>
 		</form>
@@ -133,6 +126,6 @@ crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
-<button onclick="window.location.href='admin.php'">Back</button>
+<button class="btn btn-primary" onclick="window.location.href='admin.php'">Back</button>
 </html>
 

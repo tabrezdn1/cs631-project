@@ -1,17 +1,3 @@
-<?php
-  require('connection.php');
-  session_start();
-
-  $query = "SELECT * FROM `species` "; 
-  $result = mysqli_query($conn, $query);
-
-  $options = "";
-  while ($row = $result->fetch_assoc()) {
-      $options .= "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
-  }
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,17 +79,13 @@
 	</style>
 </head>
 <body>
-	<h1>Report of the animal population by species</h1>
-	<p>Produce a report of the animal population by species, including totals by
-status, total monthly food cost and costs for assigned veterinarians and
-animal care specialists (assume a 40 hour work week)</p>
+	<h1>5 best days (in terms of total revenue)</h1>
+	<p>For a given month compute the 5 best days (in terms of total revenue)</p>
 	<div class="container">
 		<form method="POST">
 			<div class="form-group">
-				<label for="species">Species</label>
-				<select name="species" id="species">
-              	<?php echo $options; ?>
-    			</select>			
+				<label for="month">Month:</label>
+				<input type="month" class="form-control" name="month" required>
 			</div>
 			<button type="submit" name="submit" class="btn btn-primary">Generate Report</button>
 		</form>
@@ -116,19 +98,18 @@ animal care specialists (assume a 40 hour work week)</p>
 			$start_date = $_POST['start_date'];
 			$end_date = $_POST['end_date'];
 
-            $query = "SELECT appointment.LocID,location.Address, invoice_detail.Service_Type, SUM(invoice_detail.Price) AS Revenue FROM location,invoice_detail, invoice, appointment WHERE appointment.LocID= location.LocID AND invoice_detail.AppointmentID= appointment.AppointmentID AND invoice_detail.InvoiceID=invoice.InvoiceID AND appointment.Status = 'Closed' AND invoice.DatePaid BETWEEN '$start_date' AND '$end_date' GROUP BY appointment.LocID, invoice_detail.Service_Type;";
+            $query = "SELECT appointment.LocID, location.Address, SUM(invoice_detail.Price) AS Revenue FROM location, invoice_detail, invoice, appointment WHERE appointment.LocID = location.LocID AND invoice_detail.AppointmentID = appointment.AppointmentID AND invoice_detail.InvoiceID = invoice.InvoiceID AND appointment.Status = 'Closed' AND invoice.DatePaid BETWEEN '2023-04-19' AND '2023-04-30' GROUP BY appointment.LocID ORDER BY Revenue DESC LIMIT 3;";
 
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
     echo '<table class="table table-striped">';
-    echo '<thead><tr><th>Location ID</th><th>Address</th><th>Service Type</th><th>Revenue</th></tr></thead>';
+    echo '<thead><tr><th>Location ID</th><th>Address</th><th><th>Revenue</th></tr></thead>';
     echo '<tbody>';
     while($row = mysqli_fetch_assoc($result)) {
       echo '<tr>';
       echo '<td>'.$row['LocID'].'</td>';
       echo '<td>'.$row['Address'].'</td>';  
-      echo '<td>'.$row['Service_Type'].'</td>';
       echo '<td>$'.$row['Revenue'].'</td>';
       echo '</tr>';
     }
