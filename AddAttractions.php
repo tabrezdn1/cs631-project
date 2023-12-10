@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senior_price1 = $_POST['senior_price1'];
     $adult_price1 = $_POST['adult_price1'];
     $child_price1 = $_POST['child_price1'];
-    $product_price1 = $_POST['product_price1'];
+    
     $shows_per_day1 = $_POST['shows_per_day1'];
     
 
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Insert data into the animal table
     $query = "INSERT INTO `revenue_types` (`name`, `Rtype`, `building_id`,`senior_price`, `adult_price`,  `child_price`,`product_price`, `shows_per_day`) 
-    VALUES ('$name', 'Animal Shows', '$bname', '$senior_price1', '$adult_price1', '$child_price1', NULL, '$shows_per_day1')";
+    VALUES ('$name', 'Animal Shows', '$bname', '$senior_price1', '$adult_price1', '$child_price1', '0.00', '$shows_per_day1')";
     $result = mysqli_query($conn, $query);
 
     if (!$result) {
