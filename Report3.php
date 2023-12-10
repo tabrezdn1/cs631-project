@@ -108,7 +108,7 @@ attractions (in terms of total revenue) in descending order</p>
 			
 
             $query = "SELECT name, sum(revenue) as revenue from revenue_events where date(date_time) between '$start_date' and '$end_date' group by name order by revenue desc limit 3 ;";
-$result = mysqli_query($conn, $query);
+			$result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
     echo '<table class="table table-striped">';

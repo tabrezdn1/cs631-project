@@ -65,7 +65,6 @@
 		table {
 			margin-top: 30px;
 			margin-bottom: 50px;
-			max-width: 800px;
 			margin-left: auto;
 			margin-right: auto;
 			background-color: #fff;
@@ -102,6 +101,7 @@ animal care specialists (assume a 40 hour work week)</p>
 			<div class="form-group">
 				<label for="species">Species</label>
 				<select name="species" id="species">
+				<option value="">Select Species</option>
               	<?php echo $options; ?>
     			</select>			
 			</div>
@@ -109,33 +109,55 @@ animal care specialists (assume a 40 hour work week)</p>
 		</form>
 
 		<?php
-		require('connection.php');
-		session_start();
+		// require('connection.php');
+		// session_start();
 
 		if(isset($_POST['submit'])) {
-			$start_date = $_POST['start_date'];
-			$end_date = $_POST['end_date'];
 
-            $query = "SELECT appointment.LocID,location.Address, invoice_detail.Service_Type, SUM(invoice_detail.Price) AS Revenue FROM location,invoice_detail, invoice, appointment WHERE appointment.LocID= location.LocID AND invoice_detail.AppointmentID= appointment.AppointmentID AND invoice_detail.InvoiceID=invoice.InvoiceID AND appointment.Status = 'Closed' AND invoice.DatePaid BETWEEN '$start_date' AND '$end_date' GROUP BY appointment.LocID, invoice_detail.Service_Type;";
+			$name=$_POST['species'];
+            $query = "SELECT
+			s.name AS species_name,
+			COUNT(a.animal_id) AS total_animals,
+			SUM(CASE WHEN a.Astatus = 'Young' THEN 1 ELSE 0 END) AS young_animals,
+			SUM(CASE WHEN a.Astatus = 'Adult' THEN 1 ELSE 0 END) AS adult_animals,
+			SUM(CASE WHEN a.Astatus IS NULL THEN 1 ELSE 0 END) AS unknown_status,
+			SUM(s.food_cost) AS total_monthly_food_cost,
+			SUM(CASE WHEN e.job_type = 'Veterinarians' THEN hr.rate * 40 ELSE 0 END) AS total_hourly_cost_veterinarians,
+			SUM(CASE WHEN e.job_type = 'Animal care specialists' THEN hr.rate * 40 ELSE 0 END) AS total_hourly_cost_animal_care_specialists FROM
+			animal a
+		JOIN
+			species s ON a.species_id = s.species_id
+		LEFT JOIN
+			cares_for c on s.species_id = c.species_id
+		LEFT JOIN
+			employees e ON c.emp_id = e.emp_id
+		LEFT JOIN
+			hourly_rate hr ON e.hourly_rate_id = hr.hourly_rate_id
+		WHERE s.name='$name'
+		GROUP BY
+			s.name;";
 
-$result = mysqli_query($conn, $query);
+		$result = mysqli_query($conn, $query);
 
-if(mysqli_num_rows($result) > 0) {
-    echo '<table class="table table-striped">';
-    echo '<thead><tr><th>Location ID</th><th>Address</th><th>Service Type</th><th>Revenue</th></tr></thead>';
-    echo '<tbody>';
-    while($row = mysqli_fetch_assoc($result)) {
-      echo '<tr>';
-      echo '<td>'.$row['LocID'].'</td>';
-      echo '<td>'.$row['Address'].'</td>';  
-      echo '<td>'.$row['Service_Type'].'</td>';
-      echo '<td>$'.$row['Revenue'].'</td>';
-      echo '</tr>';
-    }
-echo '</tbody></table>';
-} else {
-echo '<p>No transactions found.</p>';
-}
+		if(mysqli_num_rows($result) > 0) {
+			echo '<table class="table table-striped">';
+			echo '<thead><tr><th>Species</th><th>Population</th><th>Young Status</th><th>Adult Status</th><th>Total Montly Food Cost</th><th>Total Hourly Cost of Veterinarians</th><th>Total Hourly Cost of Animal Care Specialist</th></tr></thead>';
+			echo '<tbody>';
+			while($row = mysqli_fetch_assoc($result)) {
+			echo '<tr>';
+			echo '<td>'.$row['species_name'].'</td>';
+			echo '<td>'.$row['population'].'</td>';
+			echo '<td>'.$row['young_animals'].'</td>';  
+			echo '<td>'.$row['adult_animals'].'</td>';  
+			echo '<td>'.$row['total_monthly_food_cost'].'</td>';   
+			echo '<td>'.$row['total_hourly_cost_veterinarians'].'</td>'; 
+			echo '<td>'.$row['total_hourly_cost_animal_care_specialists'].'</td>';     
+			echo '</tr>';
+			}
+		echo '</tbody></table>';
+		} else {
+		echo '<p>No transactions found.</p>';
+		}
 }
 ?>
 
