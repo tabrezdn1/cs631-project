@@ -164,8 +164,8 @@ session_start();
 						<div class="d-flex justify-content-between">
 							<a href="Report1.php"><button type="button" class="btn btn-primary" name="report1">Revenue by source</button></a>
 							<a href="Report2.php"><button type="button" class="btn btn-primary" name="report2">Animal by species</button></a>
-							<a href="Report3.php"><button type="button" class="btn btn-primary" name="report3">Top Attractions</button></a>
-							<a href="Report4.php"><button type="button" class="btn btn-primary" name="report4">Highest Revenue Days in Month</button></a>
+							<a href="Report3.php"><button type="button" class="btn btn-primary" name="report3">Top 3 Attractions</button></a>
+							<a href="Report4.php"><button type="button" class="btn btn-primary" name="report4">5 Highest Revenue Days in Month</button></a>
 							<a href="Report5.php"><button type="button" class="btn btn-primary" name="report5">Average Revenue</button></a>
 						</div>
 					</div>

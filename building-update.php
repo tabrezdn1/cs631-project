@@ -10,7 +10,7 @@ $result = mysqli_query($conn, $query);
 <html>
 
 <head>
-	<title>Animals Update</title>
+	<title>Building Update</title>
 	<style>
 		table,
 		th,
