@@ -147,11 +147,11 @@ session_start();
 					<div class="card-header">Reports and Statistics</div>
 					<div class="card-body">
 						<div class="d-flex justify-content-between">
-							<a href="Report1.php"><button type="button" class="btn btn-primary" name="report1">Report 1</button></a>
-							<a href="Report2.php"><button type="button" class="btn btn-primary" name="report2">Report 2</button></a>
-							<a href="Report3.php"><button type="button" class="btn btn-primary" name="report3">Report 3</button></a>
-							<a href="Report4.php"><button type="button" class="btn btn-primary" name="report4">Report 4</button></a>
-							<a href="Report5.php"><button type="button" class="btn btn-primary" name="report5">Report 5</button></a>
+							<a href="Report1.php"><button type="button" class="btn btn-primary" name="report1">Revenue by source</button></a>
+							<a href="Report2.php"><button type="button" class="btn btn-primary" name="report2">Animal by species</button></a>
+							<a href="Report3.php"><button type="button" class="btn btn-primary" name="report3">Top Attractions</button></a>
+							<a href="Report4.php"><button type="button" class="btn btn-primary" name="report4">Highest Revenue Days in Month</button></a>
+							<a href="Report5.php"><button type="button" class="btn btn-primary" name="report5">Average Revenue</button></a>
 						</div>
 					</div>
 

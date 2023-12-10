@@ -136,29 +136,7 @@
     </div>
   </div>
 
-  <?php
- if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true)
- {
-   echo "<br><h2 style='text-align : center'> WELCOME TO WODDY'S AUTOMOTION - $_SESSION[username]</h2>";
-
-   echo "<div class='row'>
-           <div class='col-lg-3 text-center mt-5'>
-             <a href='AddVehicle.php' class='btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none'>Add Vehicle </a> 
-           </div>
-           <div class='col-lg-3 text-center mt-5'>
-             <a href='MyVehicle.php' class='btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none'>My Vehicle </a> 
-           </div>
-           <div class='col-lg-3 text-center mt-5'>
-             <a href='CreateAppointment.php' class='btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none'>Create Appointment </a> 
-           </div>
-           <div class='col-lg-3 text-center mt-5'>
-             <a href='MyAppointment.php' class='btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none'>My Appointment </a> 
-           </div>
-         </div>";
- }
- ?>
-
-
+  
   <script>
     function popup(popup_name)
     {
