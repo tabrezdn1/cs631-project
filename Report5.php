@@ -144,7 +144,7 @@ revenue for each attraction, concession, and total attendance</p>
 			// 	$name='Zoo Admission';
 			// }
 
-			$query = "SELECT name, avg(revenue) as revenue, Rtype from revenue_events where date(date_time) between '$start_date' and '$end_date' group by name order by Rtype";
+			$query = "SELECT name, avg(revenue) as revenue, type from revenue_events where date(date_time) between '$start_date' and '$end_date' group by name order by type";
 
 $result = mysqli_query($conn, $query);
 
@@ -156,7 +156,7 @@ if(mysqli_num_rows($result) > 0) {
       echo '<tr>';
       echo '<td>'.$row['name'].'</td>';
       echo '<td>'.$row['revenue'].'</td>';
-	  echo '<td>'.$row['Rtype'].'</td>';    
+	  echo '<td>'.$row['type'].'</td>';    
       echo '</tr>';
     }
 echo '</tbody></table>';
