@@ -8,8 +8,23 @@ if(isset($_POST['purchase']))
     $item=mysqli_real_escape_string($conn,$_POST['food-item']);
     $quantity=mysqli_real_escape_string($conn,$_POST['food-item-q']);
 
-    $query ="INSERT INTO `revenue_types` (`name`, `type`, `building_id`, `senior_price`, `adult_price`, `child_price`, `product_name`, `shows_per_day`, `product_quantity`, `senior_quantity` , `adult_quantity`, `child_quantity`) VALUES ('$item','Concession','1', '0','0','0','food','0','$quantity','0','0','0')";
-    $result= mysqli_query($conn,$query);
+    $query= "SELECT * FROM `revenue_types` where name='$item'";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+
+        $price = $row['product_price'];
+        $revenue_id = $row['revenue_id'];
+        $revenue= $price * $quantity;
+        $type = $row['type'];
+
+        mysqli_free_result($result);
+    } 
+    $date=date("Y-m-d h:i:s");
+    $insert_query= "INSERT INTO `revenue_events` (`date_time`, `revenue_id`, `revenue`, `quantity`, `name`, `type`) VALUES ('$date','$revenue_id', '$revenue', '$quantity', '$item', '$type')";
+    
+    $result= mysqli_query($conn,$insert_query);
     
     if($result)
     {
@@ -101,21 +116,17 @@ if(isset($_POST['register']))
         $result = mysqli_query($conn, $query);
 
         if ($result) {
-            // Fetch the row as an associative array
             $row = mysqli_fetch_assoc($result);
 
-            // Access column values using the column names
             $price = $row[$ticket_for];
             $revenue_id = $row['revenue_id'];
             $revenue= $price * $quantity;
             $type = $row['type'];
 
-            // Free the result set
             mysqli_free_result($result);
         } 
-        $d=mktime(10, 14, 54, 8, 12, 2015);
-        $date=date("Y-m-d h:i:s", $d);
-        $insert_query= "INSERT INTO `revenue_events` (`date_time`, `revenue_id`, `revenue`, `tickets_sold`, `name`, `type`) VALUES ('$date','$revenue_id', '$revenue', '$quantity', '$ticket_name', '$type')";
+        $date=date("Y-m-d h:i:s");
+        $insert_query= "INSERT INTO `revenue_events` (`date_time`, `revenue_id`, `revenue`, `quantity`, `name`, `type`) VALUES ('$date','$revenue_id', '$revenue', '$quantity', '$ticket_name', '$type')";
         // //$query ="INSERT INTO `revenue_types` (`name`, `type`, `building_id`, `senior_price`, `adult_price`, `child_price`, `product_name`, `shows_per_day`, `product_quantity`, `senior_quantity` , `adult_quantity`, `child_quantity`) VALUES ('$ticket_type','$ticket_type','0', '$senior_price','$adult_price','$child_price','','0','0','$senior_quantity','$adult_quantity','$child_quantity')";
         
         if(mysqli_query($conn,$insert_query))
@@ -271,74 +282,74 @@ if(isset($_POST['admin']))
    }
 }
 
-if(isset($_POST['Add_Vehicle_Submit']))
-{
-    // Check if any required fields are empty
-    if(empty($_POST['VIN']) || empty($_POST['MFG']) || empty($_POST['Color']) || empty($_POST['model']) || empty($_POST['year']) || empty($_POST['Type']))
-    {
-        echo "
-        <script>
-            alert('Please fill out all required fields');
-            window.location.href='AddVehicle.php';
-        </script>
-        ";
-        exit;
-    }
+// if(isset($_POST['Add_Vehicle_Submit']))
+// {
+//     // Check if any required fields are empty
+//     if(empty($_POST['VIN']) || empty($_POST['MFG']) || empty($_POST['Color']) || empty($_POST['model']) || empty($_POST['year']) || empty($_POST['Type']))
+//     {
+//         echo "
+//         <script>
+//             alert('Please fill out all required fields');
+//             window.location.href='AddVehicle.php';
+//         </script>
+//         ";
+//         exit;
+//     }
     
-    $VIN=mysqli_real_escape_string($conn,$_POST['VIN']);
-    $MFG=mysqli_real_escape_string($conn,$_POST['MFG']);
-    $Color=mysqli_real_escape_string($conn,$_POST['Color']);
-    $Model=mysqli_real_escape_string($conn,$_POST['model']);
-    $Year=mysqli_real_escape_string($conn,$_POST['year']);
-    $Type=mysqli_real_escape_string($conn,$_POST['Type']);
+//     $VIN=mysqli_real_escape_string($conn,$_POST['VIN']);
+//     $MFG=mysqli_real_escape_string($conn,$_POST['MFG']);
+//     $Color=mysqli_real_escape_string($conn,$_POST['Color']);
+//     $Model=mysqli_real_escape_string($conn,$_POST['model']);
+//     $Year=mysqli_real_escape_string($conn,$_POST['year']);
+//     $Type=mysqli_real_escape_string($conn,$_POST['Type']);
     
-    $query ="INSERT INTO `vehicle`(`VIN`, `Manufacturer`, `Color`, `Model`, `Year`, `Type`, `CustomerID`) VALUES ('$VIN','$MFG','$Color','$Model','$Year','$Type','$_SESSION[CID]')";
-    if(mysqli_query($conn,$query))
-    {
-        echo "
-        <script>
-            alert('Registration Successful');
-            window.location.href='AddVehicle.php';
-        </script>
-        ";
-    }
-    else
-    {
-        echo "
-        <script>
-            alert('Cannot run query');
-            window.location.href='index.php';
-        </script>
-        ";
-    }
-}
+//     $query ="INSERT INTO `vehicle`(`VIN`, `Manufacturer`, `Color`, `Model`, `Year`, `Type`, `CustomerID`) VALUES ('$VIN','$MFG','$Color','$Model','$Year','$Type','$_SESSION[CID]')";
+//     if(mysqli_query($conn,$query))
+//     {
+//         echo "
+//         <script>
+//             alert('Registration Successful');
+//             window.location.href='AddVehicle.php';
+//         </script>
+//         ";
+//     }
+//     else
+//     {
+//         echo "
+//         <script>
+//             alert('Cannot run query');
+//             window.location.href='index.php';
+//         </script>
+//         ";
+//     }
+// }
 
-if(isset($_POST['Edit_Customer_Submit']))
-{
+// if(isset($_POST['Edit_Customer_Submit']))
+// {
     
-    $dbuname1 = mysqli_real_escape_string($conn, $result_fetch['Username']);
-    echo ("$dbuname1");
-    /*
-    $query ="INSERT INTO `vehicle`(`VIN`, `Manufacturer`, `Color`, `Model`, `Year`, `Type`, `CustomerID`) VALUES ('$VIN','$MFG','$Color','$Model','$Year','$Type','$_SESSION[CID]')";
-    if(mysqli_query($conn,$query))
-    {
-        echo "
-        <script>
-            alert('Registration Successful');
-            window.location.href='AddVehicle.php';
-        </script>
-        ";
-    }
-    else
-    {
-        echo "
-        <script>
-            alert('Cannot run query');
-            window.location.href='index.php';
-        </script>
-        ";
-    }
-    */
-}
+//     $dbuname1 = mysqli_real_escape_string($conn, $result_fetch['Username']);
+//     echo ("$dbuname1");
+//     /*
+//     $query ="INSERT INTO `vehicle`(`VIN`, `Manufacturer`, `Color`, `Model`, `Year`, `Type`, `CustomerID`) VALUES ('$VIN','$MFG','$Color','$Model','$Year','$Type','$_SESSION[CID]')";
+//     if(mysqli_query($conn,$query))
+//     {
+//         echo "
+//         <script>
+//             alert('Registration Successful');
+//             window.location.href='AddVehicle.php';
+//         </script>
+//         ";
+//     }
+//     else
+//     {
+//         echo "
+//         <script>
+//             alert('Cannot run query');
+//             window.location.href='index.php';
+//         </script>
+//         ";
+//     }
+//     */
+// }
 
 ?>
