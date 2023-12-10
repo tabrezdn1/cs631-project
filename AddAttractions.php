@@ -12,7 +12,7 @@ $query1= "SELECT * FROM  `buildings`  ";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve user inputs
     $name = $_POST['name'];
-    $Rtype = $_POST['Rtype'];
+    
     $bname = $_POST['bname'];
     $senior_price1 = $_POST['senior_price1'];
     $adult_price1 = $_POST['adult_price1'];
@@ -72,20 +72,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="name">Attraction Name:</label>
                 <input type="text" class="form-control" name="name" required>
             </div>
-            <div class="form-group">
-                <label for="Rtype">Attraction Type:</label>
-                <select class="form-control" name="Rtype" required>
-                    <option value="">Select Attraction Type</option>
-                    <!-- Add options based on your actual species values -->
-                    <option value="Animal Shows">Animal Shows</option>
-                    <option value="Exhibit">Exhibit</option>
-                    <option value="Concession">Concession</option>
-                </select>
-            </div>
+            
             <div class="form-group">
                 <label for="bname">Building Name:</label>
                 <select class="form-control" name="bname" required>
-                    <option value="">Select Attraction Type</option>
+                    <option value="">Select Building</option>
                     <!-- Add options based on your actual species values -->
                     <?php echo $BuildingOptions; ?>
                 </select>

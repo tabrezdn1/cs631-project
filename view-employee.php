@@ -46,7 +46,7 @@ include 'connection.php';
   <?php
   // Display table of appointments
   if (mysqli_num_rows($result) > 0) {
-    echo "<table><tr><th>Employee ID</th><th>Supervisor ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Join Date</th><th>Street</th><th>City</th><th>State</th><th>Zip</th><th>Job Type</th><th>Working Area</th><th>Hourly Rate</th></tr>";
+    echo "<table><tr><th>Employee ID</th><th>Supervisor ID</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Join Date</th><th>Street</th><th>City</th><th>State</th><th>Zip</th><th>Job Type</th><th>Hourly Rate</th></tr>";
     while($row = mysqli_fetch_assoc($result)) {
      
       $emp_id = $row['emp_id'];
@@ -59,12 +59,12 @@ include 'connection.php';
       $city = $row['city'];
       $state = $row['state'];
       $zip = $row['zip'];
-      $job_type = $row['job_type'];
+      
       $name =$row['name'];
       $rate = $row['rate'];
       
        
-        echo "<tr><td>$emp_id</td><td>$sup_id</td><td>$first_name</td><td>$middle_name</td><td>$last_name</td><td>$start_date</td><td>$street</td><td>$city</td><td>$state</td><td>$zip</td><td>$job_type</td><td>$name</td><td>$rate</td></tr>";
+        echo "<tr><td>$emp_id</td><td>$sup_id</td><td>$first_name</td><td>$middle_name</td><td>$last_name</td><td>$start_date</td><td>$street</td><td>$city</td><td>$state</td><td>$zip</td><td>$name</td><td>$rate</td></tr>";
       
       
     }

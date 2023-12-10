@@ -79,7 +79,7 @@ $result = mysqli_query($conn, $query);
 								<option value="Caretaker">Animal Care Specialist</option>
 								<option value="Veterinarian">Veterinarian</option>
 								<option value="Maintenance">Maintenance</option>
-								<option value="Assistant">Assistant</option>
+								
 								<option value="Ticket Seller">Ticket Seller</option>
 								<option value="Customer Service">Customer Service</option>
 									
