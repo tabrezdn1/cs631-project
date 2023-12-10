@@ -96,30 +96,27 @@ subtotals</p>
 		session_start();
 
 		if(isset($_POST['submit'])) {
-			$date = $_POST['start_date'];
+			$start_date = $_POST['start_date'];
+			$query = "SELECT name, sum(revenue) as revenue, quantity from revenue_events where date(date_time) group by Rtype order by revenue desc";
 
-            $query = "SELECT revenue, name, quantity, Rtype from revenue_events group by Rtype";
-			// we need to add date for day in the above query should be similar to report 5 just dont need avg and also source is revenue_type.type column [Animal Show, Concession, Zoo admission]
-			$result = mysqli_query($conn, $query);
+$result = mysqli_query($conn, $query);
 
-			if(mysqli_num_rows($result) > 0) {
-				echo '<table class="table table-striped">';
-				echo '<thead><tr><th>Revenue</th><th>Name</th><th>Type</th></tr></thead>';
-				echo '<tbody>';
-				while($row = mysqli_fetch_assoc($result)) {
-				echo '<tr>';
-				echo '<td>'.$row['revenue'].'</td>';
-				echo '<td>'.$row['name'].'</td>';
-				echo '<td>'.$row['Rtype'].'</td>';
-				echo '</tr>';
-				}
+if(mysqli_num_rows($result) > 0) {
+    echo '<table class="table table-striped">';
+    echo '<thead><tr><th>Source</th><th>Total Revenue</th><th>Number of Tickets sold</th></tr></thead>';
+    echo '<tbody>';
+    while($row = mysqli_fetch_assoc($result)) {
+      echo '<tr>';
+      echo '<td>'.$row['name'].'</td>';
+      echo '<td>'.$row['revenue'].'</td>';
+	  echo '<td>'.$row['quantity'].'</td>';  
+      echo '</tr>';
+    }
 echo '</tbody></table>';
 } else {
 echo '<p>No transactions found.</p>';
 }
-
-
-} 
+}
 ?>
 
 </div>
@@ -134,4 +131,3 @@ crossorigin="anonymous"></script>
 </body>
 <button class="btn btn-primary" onclick="window.location.href='admin.php'">Back</button>
 </html>
-
