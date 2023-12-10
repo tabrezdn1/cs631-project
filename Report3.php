@@ -112,7 +112,7 @@ $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
     echo '<table class="table table-striped">';
-    echo '<thead><tr><th>Name</th><th><th>Revenue</th></tr></thead>';
+    echo '<thead><tr><th>Name</th><th>Revenue</th></tr></thead>';
     echo '<tbody>';
     while($row = mysqli_fetch_assoc($result)) {
       echo '<tr>';
