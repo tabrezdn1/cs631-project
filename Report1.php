@@ -97,7 +97,7 @@ subtotals</p>
 
 		if(isset($_POST['submit'])) {
 			$start_date = $_POST['start_date'];
-			$query = "SELECT name, sum(revenue) as revenue, quantity from revenue_events where date(date_time)='$start_date' group by type order by revenue desc";
+			$query = "SELECT name, sum(revenue) as revenue, sum(quantity) as quantity from revenue_events where date(date_time)='$start_date' group by name order by revenue desc";
 
 $result = mysqli_query($conn, $query);
 
