@@ -2,7 +2,7 @@
   require('connection.php');
   session_start();
 
-  $query = "SELECT * FROM `revenue_types` where type='Animal Shows' or type='Zoo Admission' "; 
+  $query = "SELECT * FROM `revenue_types` where Rtype='Animal Shows' or Rtype='Zoo Admission' "; 
   $result = mysqli_query($conn, $query);
 
   $options = "";
@@ -10,7 +10,7 @@
       $options .= "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
   }
 
-  $food_query = "SELECT * FROM `revenue_types` where type='Concession' "; 
+  $food_query = "SELECT * FROM `revenue_types` where Rtype='Concession' "; 
   $result = mysqli_query($conn, $food_query);
 
   $food_options = "";

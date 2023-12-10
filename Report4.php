@@ -132,4 +132,3 @@ crossorigin="anonymous"></script>
 </body>
 <button class="btn btn-primary" onclick="window.location.href='admin.php'">Back</button>
 </html>
-

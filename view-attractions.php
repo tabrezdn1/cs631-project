@@ -49,7 +49,7 @@ include 'connection.php';
      
       $revenue_id = $row['revenue_id'];
       $name = $row['name'];
-      $type= $row['type'];
+      $type= $row['Rtype'];
       $building_name = $row['Bname'];
       $senior_price = $row['senior_price'];
       $adult_price = $row['adult_price'];
