@@ -10,7 +10,7 @@
 //       $zoo_options .= "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
 //   }
 
-  $show_query = "SELECT * FROM `revenue_types` where type='Animal Shows' "; 
+  $show_query = "SELECT * FROM `revenue_types` where Rtype='Animal Shows' "; 
   $result = mysqli_query($conn, $show_query);
 
   $show_options = "";
@@ -18,7 +18,7 @@
       $show_options .= "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
   }
 
-  $con_query = "SELECT * FROM `revenue_types` where type='Concession' "; 
+  $con_query = "SELECT * FROM `revenue_types` where Rtype='Concession' "; 
   $result = mysqli_query($conn, $con_query);
 
   $con_options = "";
@@ -144,7 +144,7 @@ revenue for each attraction, concession, and total attendance</p>
 			// 	$name='Zoo Admission';
 			// }
 
-			$query = "SELECT name, avg(revenue) as revenue, type from revenue_events where date(date_time) between '$start_date' and '$end_date' group by name order by type";
+			$query = "SELECT name, avg(revenue) as revenue, Rtype from revenue_events where date(date_time) between '$start_date' and '$end_date' group by name order by Rtype";
 
 $result = mysqli_query($conn, $query);
 
@@ -156,7 +156,7 @@ if(mysqli_num_rows($result) > 0) {
       echo '<tr>';
       echo '<td>'.$row['name'].'</td>';
       echo '<td>'.$row['revenue'].'</td>';
-	  echo '<td>'.$row['type'].'</td>';    
+	  echo '<td>'.$row['Rtype'].'</td>';    
       echo '</tr>';
     }
 echo '</tbody></table>';
