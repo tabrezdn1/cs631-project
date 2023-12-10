@@ -3,7 +3,7 @@ include 'connection.php';
 
 
   // Default to today's date if no date is selected
-  $sql =  "SELECT * FROM animal as A, species as S, buildings as B, enclosures as E WHERE A.species_id= S.species_id AND A.building_id=B.building_id AND A.enclosure_id=E.enclosure_id";
+  $sql = "SELECT * FROM buildings";
   $result = mysqli_query($conn, $sql);
 
 
@@ -12,7 +12,7 @@ include 'connection.php';
 <!DOCTYPE html>
 <html>
 <head>
-  <title>View Animals</title>
+  <title>View Buildings</title>
   <style>
     table {
       border-collapse: collapse;
@@ -29,22 +29,19 @@ include 'connection.php';
 </head>
 <body>
 
-  <h1>View Animals</h1>
+  <h1>View Buildings</h1>
 
   
 
   <?php
   // Display table of appointments
   if (mysqli_num_rows($result) > 0) {
-    echo "<table><tr><th>Name</th><th>Species</th><th>Birth Year </th><th>Status</th><th>Building</th><th>Enclosure </th></tr>";
+    echo "<table><tr><th>Building ID</th><th>Building Name</th><th>Type</th></tr>";
     while($row = mysqli_fetch_assoc($result)) {
-     
-      $species = $row['name'];
-      $name = $row['AName'];
-      $birth_year = $row['birth_year'];
-      $status = $row['Astatus'];
-      $building_id = $row['Bname'];
-      $enclosure_id = $row['sqft'];
+      $building_id = $row['building_id'];
+      $Bname = $row['Bname'];
+      $type = $row['type'];
+      
 
       // // Get invoice details for the appointment
       // $sql2 = "SELECT Service_Type, Vehicle_Type, Price FROM invoice_detail WHERE AppointmentID = '$appointmentID'";
@@ -64,16 +61,16 @@ include 'connection.php';
       // Display appointment details and associated invoice details
       if (!empty($enclosure_id)) {
        
-        echo "<tr><td>$name</td><td>$species</td><td>$birth_year</td><td>$status</td><td>$building_id</td><td>$enclosure_id sq. ft</td></tr>";
+        echo "<tr><td>$building_id</td><td>$Bname</td><td>$type</td></tr>";
       } else {
         // Display appointment details without invoice details
-        echo "<tr><td>$name</td><td>$species</td><td>$birth_year</td><td>$status</td><td>$building_id</td><td>No invoice details found</td></tr>";
+        echo "<tr><td>$building_id</td><td>$Bname</td><td>$type</td></tr>";
       }
     }
     echo "</table>";
   } else {
     // No appointments found for selected date
-    echo "No appointments found for ";
+    echo "No items found ";
   }
   ?>
 

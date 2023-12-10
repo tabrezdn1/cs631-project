@@ -1,7 +1,7 @@
 <?php
 include("connection.php");
 
-$query = "SELECT * FROM animal as A, species as S, buildings as B, enclosures as E WHERE A.species_id= S.species_id AND A.building_id=B.building_id AND A.enclosure_id=E.enclosure_id";
+$query = "SELECT * FROM  buildings ";
 
 $result = mysqli_query($conn, $query);
 ?>
@@ -36,49 +36,44 @@ $result = mysqli_query($conn, $query);
 </head>
 
 <body>
-	<h1>Animals Update</h1>
+	<h1>Building Update</h1>
 	<table>
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Species</th>
-				<th>Birth Year</th>
-				<th>Status</th>
-				<th>Update Status</th>
+				<th>Building ID</th>
 				<th>Building Name</th>
-				<th>Enclosure Size</th>
-				<th>Actions</th>
+				<th>Type</th>
+				<th>Update Type</th>
+				
 			</tr>
 		</thead>
 		<tbody>
 			<?php while ($row = mysqli_fetch_assoc($result)) { ?>
 				<tr>
-					<td><?php echo $row['AName']; ?></td>
-					<td><?php echo $row['name']; ?></td>
-					<td><?php echo $row['birth_year']; ?></td>
-					<td><?php echo $row['Astatus']; ?></td>
+					<td><?php echo $row['building_id']; ?></td>
+					<td><?php echo $row['Bname']; ?></td>
+					<td><?php echo $row['type']; ?></td>
 					<td>
 						<form method="POST">
 							<div>
-								<select name="statusOpt" id="status">
-									<option value="Old">Old</option>
-									<option value="Young">Young</option>
-									<option value="Sick">Sick</option>
-									<option value="Healthy">Healthy</option>
+								<select name="typeOpt" id="status">
+									<option value="Exhibit">Exhibit</option>
+									<option value="Aviary">Aviary</option>
+									<option value="Aquatic">Aquatic</option>
+									<option value="Interactive">Interactive</option>
 								</select>
 							</div>
-							<input type="hidden" name="aid" value="<?php echo $row['animal_id']; ?>">
+							<input type="hidden" name="bid" value="<?php echo $row['building_id']; ?>">
 							<input type="submit" name="update_animal" value="Update">
 						</form>
 					</td>
-					<td><?php echo $row['Bname']; ?></td>
-					<td><?php echo $row['sqft']; ?> sq. ft</td>
-					<td>
+					
+					<!-- <td>
 						<form method="post">
 							<input type="hidden" name="aid" value="<?php echo $row['animal_id']; ?>">
 							<input type="submit" name="delete_animal" value="Delete">
 						</form>
-					</td>
+					</td> -->
 				</tr>
 			<?php } ?>
 		</tbody>
@@ -92,11 +87,11 @@ $result = mysqli_query($conn, $query);
 		//header("Refresh:0");
 	}
 	if (isset($_POST['update_animal'])) {
-		$aid = $_POST['aid'];
-		$status = $_POST['statusOpt'];
-		$query = "UPDATE animal SET status ='$status' WHERE animal_id = $aid";
+		$bid = $_POST['bid'];
+		$status = $_POST['typeOpt'];
+		$query = "UPDATE buildings SET type ='$status' WHERE building_id = $bid";
 		mysqli_query($conn, $query);
-		//header("Refresh:5");
+		// header("Refresh:0");
 	}
 	?>
 

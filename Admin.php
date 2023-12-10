@@ -88,8 +88,53 @@ session_start();
 					<div class="card-body">
 					<div class="d-flex justify-content-between">
 					<a href="view-animal.php"><button type="button" class="btn btn-primary">View</button></a>
-					<a href="service-status-update.php"><button type="button" class="btn btn-primary">Add</button></a>
+					<a href="AddAnimal.php"><button type="button" class="btn btn-primary">Add</button></a>
 					<a href="animal-update.php"><button type="button" class="btn btn-primary">Update</button></a>
+					
+				</div>
+
+					</div>
+
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-header">Building</div>
+					<div class="card-body">
+					<div class="d-flex justify-content-between">
+					<a href="view-building.php"><button type="button" class="btn btn-primary">View</button></a>
+					<a href="AddBuilding.php"><button type="button" class="btn btn-primary">Add</button></a>
+					<a href="building-update.php"><button type="button" class="btn btn-primary">Update</button></a>
+					
+				</div>
+
+					</div>
+
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-header">Employee</div>
+					<div class="card-body">
+					<div class="d-flex justify-content-between">
+					<a href="view-employee.php"><button type="button" class="btn btn-primary">View</button></a>
+					<a href="AddEmployee.php"><button type="button" class="btn btn-primary">Add</button></a>
+					<a href="employee-update.php"><button type="button" class="btn btn-primary">Update</button></a>
+					
+				</div>
+
+					</div>
+
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-header">Hourly Rates</div>
+					<div class="card-body">
+					<div class="d-flex justify-content-between">
+					<a href="view-hourlyrates.php"><button type="button" class="btn btn-primary">View</button></a>
+					<a href="AddHourlyRates.php"><button type="button" class="btn btn-primary">Add</button></a>
+					<a href="hourlyrates-update.php"><button type="button" class="btn btn-primary">Update</button></a>
 					
 				</div>
 
