@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="Caretaker">Animal Care Specialist</option>
                     <option value="Veterinarian">Veterinarian</option>
                     <option value="Maintenance">Maintenance</option>
-                    <option value="Assistant">Assistant</option>
+                    <option value="Customer Service">Customer Service</option>
                     <option value="Ticket Seller">Ticket Seller</option>
 
                 </select>
@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <select class="form-control" name="sup_id" required>
                     <option value="">Select Supervisor</option>
                     <option value="1">Manager</option>
-                    <option value="2">Assistant</option>
+                    
                     
                 </select>
             </div>

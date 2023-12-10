@@ -36,13 +36,12 @@ $result = mysqli_query($conn, $query);
 </head>
 
 <body>
-	<h1>Animals Update</h1>
+	<h1>Attraction Update</h1>
 	<table>
 		<thead>
 			<tr>
 				<th>Name</th>
-				<th>Type</th>
-				<th>Change Type</th>
+				
 				<th>Building Name</th>
 				<th>Senior Ticket Price</th>
 				<th>Change Senior Price</th>
@@ -50,8 +49,7 @@ $result = mysqli_query($conn, $query);
 				<th>Change Adult Price</th>
 				<th>Child Ticket Price</th>
 				<th>Change Child Price</th>
-				<th>Product Price</th>
-				<th>Change Product Price</th>
+				
 				<th>Shows Per Day</th>
 				<th>Change Shows Per Day</th>
 			</tr>
@@ -60,22 +58,7 @@ $result = mysqli_query($conn, $query);
 			<?php while ($row = mysqli_fetch_assoc($result)) { ?>
 				<tr>
 					<td><?php echo $row['name']; ?></td>
-					<td><?php echo $row['Rtype']; ?></td>
-					<td>
-						<form method="POST">
-							<div>
-								<select name="statusOpt" id="status">
-									<option value="Animal Shows">Animal Shows</option>
-									<option value="Exhibit">Exhibit</option>
-									<option value="Concession">Concession</option>
-									
-								</select>
-								<input type="hidden" name="rid" value="<?php echo $row['revenue_id']; ?>">
-								<input type="submit" name="update_type" value="Update">
-							</div>
-							
-						</form>
-					</td>
+					
 					<td><?php echo $row['Bname']; ?></td>
 					<td>$<?php echo $row['senior_price']; ?></td>
 					<td>
@@ -111,16 +94,7 @@ $result = mysqli_query($conn, $query);
 						</form>
 					</td>
 					<td>$<?php echo $row['product_price']; ?></td>
-					<td>
-						<form method="POST">
-							<div>
-								<input type="text" name="product_price1" value="">
-								<input type="hidden" name="rid" value="<?php echo $row['revenue_id']; ?>">
-								<input type="submit" name="change_product" value="Update">
-							</div>
-							
-						</form>
-					</td>
+					
 					<td><?php echo $row['shows_per_day']; ?></td>
 					<td>
 						<form method="POST">
@@ -151,13 +125,7 @@ $result = mysqli_query($conn, $query);
 		mysqli_query($conn, $query);
 		//header("Refresh:0");
 	}
-	if (isset($_POST['update_type'])) {
-		$rid = $_POST['rid'];
-		$status = $_POST['statusOpt'];
-		$query = "UPDATE revenue_types SET Rtype ='$status' WHERE revenue_id = $rid";
-		mysqli_query($conn, $query);
-		//header("Refresh:5");
-	}
+	
 	if (isset($_POST['change_senior'])) {
 		$rid = $_POST['rid'];
 		$status = $_POST['senior_price1'];
@@ -179,13 +147,7 @@ $result = mysqli_query($conn, $query);
 		mysqli_query($conn, $query);
 		//header("Refresh:5");
 	}
-	if (isset($_POST['change_product'])) {
-		$rid = $_POST['rid'];
-		$status = $_POST['product_price1'];
-		$query = "UPDATE revenue_types SET product_price ='$status' WHERE revenue_id = $rid";
-		mysqli_query($conn, $query);
-		//header("Refresh:5");
-	}
+	
 	if (isset($_POST['change_shows'])) {
 		$rid = $_POST['rid'];
 		$status = $_POST['show_per_day1'];
