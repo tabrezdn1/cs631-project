@@ -153,29 +153,30 @@ revenue for each attraction, concession, and total attendance</p>
 		if(isset($_POST['submit'])) {
 			$start_date = $_POST['start_date'];
 			$end_date = $_POST['end_date'];
-			$att_name= $_POST['attraction'];
-			$con_name= $_POST['concession'];
-			$zoo_name= $_POST['zoo'];
-			if(strlen($att_name)>0){
-				$name=$att_name;
-			}if(strlen($con_name)>0){
-				$name= $con_name;
-			}if(strlen($zoo_name)>0){
-				$name='Zoo Admission';
-			}
+			// $att_name= $_POST['attraction'];
+			// $con_name= $_POST['concession'];
+			// $zoo_name= $_POST['zoo'];
+			// if(strlen($att_name)>0){
+			// 	$name=$att_name;
+			// }if(strlen($con_name)>0){
+			// 	$name= $con_name;
+			// }if(strlen($zoo_name)>0){
+			// 	$name='Zoo Admission';
+			// }
 
-			$query = "SELECT name, avg(revenue) as revenue from revenue_events where date(date_time) between '$start_date' and '$end_date' and name='$name' group by name order by revenue desc";
+			$query = "SELECT name, avg(revenue) as revenue, type from revenue_events where date(date_time) between '$start_date' and '$end_date' group by name order by type";
 
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
     echo '<table class="table table-striped">';
-    echo '<thead><tr><th>Name</th><th>Revenue</th><th><th>Type</th></tr></thead>';
+    echo '<thead><tr><th>Name</th><th>Revenue</th><th>Type</th></tr></thead>';
     echo '<tbody>';
     while($row = mysqli_fetch_assoc($result)) {
       echo '<tr>';
       echo '<td>'.$row['name'].'</td>';
-      echo '<td>'.$row['revenue'].'</td>';  
+      echo '<td>'.$row['revenue'].'</td>';
+	  echo '<td>'.$row['type'].'</td>';    
       echo '</tr>';
     }
 echo '</tbody></table>';
