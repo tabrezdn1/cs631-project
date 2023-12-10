@@ -142,7 +142,22 @@ session_start();
 
 				</div>
 			</div>
-			<div class="col-lg-12">
+			<div class="col-lg-6">
+				<div class="card">
+					<div class="card-header">Attractions</div>
+					<div class="card-body">
+					<div class="d-flex justify-content-between">
+					<a href="view-attractions.php"><button type="button" class="btn btn-primary">View</button></a>
+					<a href="AddAttractions.php"><button type="button" class="btn btn-primary">Add</button></a>
+					<a href="attractions-update.php"><button type="button" class="btn btn-primary">Update</button></a>
+					
+				</div>
+
+					</div>
+
+				</div>
+			</div>
+			<div class="col-lg-6">
 				<div class="card">
 					<div class="card-header">Reports and Statistics</div>
 					<div class="card-body">

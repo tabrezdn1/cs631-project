@@ -1,8 +1,6 @@
 <?php
 include 'connection.php';
 
-
-  // Default to today's date if no date is selected
   $sql =  "SELECT * FROM animal as A, species as S, buildings as B, enclosures as E WHERE A.species_id= S.species_id AND A.building_id=B.building_id AND A.enclosure_id=E.enclosure_id";
   $result = mysqli_query($conn, $sql);
 
@@ -58,22 +56,6 @@ include 'connection.php';
       $building_id = $row['Bname'];
       $enclosure_id = $row['sqft'];
 
-      // // Get invoice details for the appointment
-      // $sql2 = "SELECT Service_Type, Vehicle_Type, Price FROM invoice_detail WHERE AppointmentID = '$appointmentID'";
-      // $result2 = mysqli_query($conn, $sql2);
-
-      // $services = array();
-      // // Store service details in array
-      // if (mysqli_num_rows($result2) > 0) {
-      //   while($row2 = mysqli_fetch_assoc($result2)) {
-      //     $serviceType = $row2['Service_Type'];
-      //     $vehicleType = $row2['Vehicle_Type'];
-      //     $price = $row2['Price'];
-      //     $services[] = "$serviceType ($vehicleType) - $price";
-      //   }
-      // }
-
-      // Display appointment details and associated invoice details
       if (!empty($enclosure_id)) {
        
         echo "<tr><td>$name</td><td>$species</td><td>$birth_year</td><td>$status</td><td>$building_id</td><td>$enclosure_id sq. ft</td></tr>";
@@ -84,7 +66,6 @@ include 'connection.php';
     }
     echo "</table>";
   } else {
-    // No appointments found for selected date
     echo "No appointments found for ";
   }
   ?>
