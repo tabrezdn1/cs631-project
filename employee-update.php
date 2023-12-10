@@ -76,9 +76,11 @@ $result = mysqli_query($conn, $query);
 						<form method="POST">
 							<div>
 								<select name="JobType" id="JobType">
-									<option value="Assistant">Assistant</option>
-									<option value="Caretaker">Caretaker</option>
-									<option value="Trainer">Trainer</option>
+								<option value="Caretaker">Animal Care Specialist</option>
+								<option value="Veterinarian">Veterinarian</option>
+								<option value="Maintenance">Maintenance</option>
+								<option value="Assistant">Assistant</option>
+								<option value="Ticket Seller">Ticket Seller</option>
 									
 								</select>
 								<input type="hidden" name="eid" value="<?php echo $row['emp_id']; ?>">

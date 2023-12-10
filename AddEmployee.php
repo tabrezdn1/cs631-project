@@ -114,6 +114,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="">Select Job Type</option>
                     <option value="Caretaker">Animal Care Specialist</option>
                     <option value="Veterinarian">Veterinarian</option>
+                    <option value="Maintenance">Maintenance</option>
+                    <option value="Assistant">Assistant</option>
+                    <option value="Ticket Seller">Ticket Seller</option>
+
                 </select>
             </div>
             <div class="form-group">
