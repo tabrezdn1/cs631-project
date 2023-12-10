@@ -93,7 +93,7 @@ $result = mysqli_query($conn, $query);
 							
 						</form>
 					</td>
-					<td>$<?php echo $row['product_price']; ?></td>
+					
 					
 					<td><?php echo $row['shows_per_day']; ?></td>
 					<td>
