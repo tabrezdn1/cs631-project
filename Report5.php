@@ -1,3 +1,33 @@
+<?php
+  require('connection.php');
+  session_start();
+
+//   $zoo_query = "SELECT * FROM `revenue_types` where type='Zoo Admission' "; 
+//   $result = mysqli_query($conn, $zoo_query);
+
+//   $zoo_options = "";
+//   while ($row = $result->fetch_assoc()) {
+//       $zoo_options .= "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
+//   }
+
+  $show_query = "SELECT * FROM `revenue_types` where type='Animal Shows' "; 
+  $result = mysqli_query($conn, $show_query);
+
+  $show_options = "";
+  while ($row = $result->fetch_assoc()) {
+      $show_options .= "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
+  }
+
+  $con_query = "SELECT * FROM `revenue_types` where type='Concession' "; 
+  $result = mysqli_query($conn, $con_query);
+
+  $con_options = "";
+  while ($row = $result->fetch_assoc()) {
+      $con_options .= "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
+  }
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,7 +124,25 @@ revenue for each attraction, concession, and total attendance</p>
 			</div>
 			<div class="form-group">
 				<label for="attraction">Select Attraction:</label>
-				<input type="date" class="form-control" name="attraction" required>
+				<select name="attraction" id="attraction">
+				<option value="">Select Attraction</option>
+              	<?php echo $show_options; ?>
+    			</select>
+			</div>	
+			<div class="form-group">
+				<label for="concession">Select Concession:</label>
+				<select name="concession" id="concession">
+				<option value="">Select Concession</option>
+              	<?php echo $con_options; ?>
+    			</select>
+			</div>
+			<div class="form-group">
+			<label for="zoo">Zoo Attendance:</label>
+				<select name="zoo" id="zoo">
+				<option value="">No</option>
+				<option value="Yes">Yes</option>
+				</select>
+			</div>
 			<button type="submit" name="submit" class="btn btn-primary">Generate Report</button>
 		</form>
 
@@ -105,20 +153,29 @@ revenue for each attraction, concession, and total attendance</p>
 		if(isset($_POST['submit'])) {
 			$start_date = $_POST['start_date'];
 			$end_date = $_POST['end_date'];
+			$att_name= $_POST['attraction'];
+			$con_name= $_POST['concession'];
+			$zoo_name= $_POST['zoo'];
+			if(strlen($att_name)>0){
+				$name=$att_name;
+			}if(strlen($con_name)>0){
+				$name= $con_name;
+			}if(strlen($zoo_name)>0){
+				$name='Zoo Admission';
+			}
 
-            $query = "SELECT appointment.LocID, location.Address, SUM(invoice_detail.Price) AS Revenue FROM location, invoice_detail, invoice, appointment WHERE appointment.LocID = location.LocID AND invoice_detail.AppointmentID = appointment.AppointmentID AND invoice_detail.InvoiceID = invoice.InvoiceID AND appointment.Status = 'Closed' AND invoice.DatePaid BETWEEN '2023-04-19' AND '2023-04-30' GROUP BY appointment.LocID ORDER BY Revenue DESC LIMIT 3;";
+			$query = "SELECT name, avg(revenue) as revenue from revenue_events where date(date_time) between '$start_date' and '$end_date' and name='$name' group by name order by revenue desc";
 
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
     echo '<table class="table table-striped">';
-    echo '<thead><tr><th>Location ID</th><th>Address</th><th><th>Revenue</th></tr></thead>';
+    echo '<thead><tr><th>Name</th><th>Revenue</th><th><th>Type</th></tr></thead>';
     echo '<tbody>';
     while($row = mysqli_fetch_assoc($result)) {
       echo '<tr>';
-      echo '<td>'.$row['LocID'].'</td>';
-      echo '<td>'.$row['Address'].'</td>';  
-      echo '<td>$'.$row['Revenue'].'</td>';
+      echo '<td>'.$row['name'].'</td>';
+      echo '<td>'.$row['revenue'].'</td>';  
       echo '</tr>';
     }
 echo '</tbody></table>';
