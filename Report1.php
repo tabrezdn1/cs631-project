@@ -97,7 +97,6 @@ subtotals</p>
 
 		if(isset($_POST['submit'])) {
 			$date = $_POST['start_date'];
-			$location = $_POST['location'];
 
             $query = "SELECT DISTINCT AppointmentID, CustomerID, VIN, A.LocID, Date, Status FROM Appointment A,Location L WHERE Date='$date' AND L.Address='$location' AND Status='Service Started' OR Status='Scheduled'";
 

@@ -92,6 +92,9 @@ revenue for each attraction, concession, and total attendance</p>
 				<label for="end_date">End Date:</label>
 				<input type="date" class="form-control" name="end_date" required>
 			</div>
+			<div class="form-group">
+				<label for="attraction">Select Attraction:</label>
+				<input type="date" class="form-control" name="attraction" required>
 			<button type="submit" name="submit" class="btn btn-primary">Generate Report</button>
 		</form>
 

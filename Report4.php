@@ -95,24 +95,24 @@
 		session_start();
 
 		if(isset($_POST['submit'])) {
-			$start_date = $_POST['start_date'];
-			$end_date = $_POST['end_date'];
+			$month = $_POST['month'];
+			list($year, $month) = explode('-', $month);
+			// $month = intval($month);
 
-            $query = "SELECT appointment.LocID, location.Address, SUM(invoice_detail.Price) AS Revenue FROM location, invoice_detail, invoice, appointment WHERE appointment.LocID = location.LocID AND invoice_detail.AppointmentID = appointment.AppointmentID AND invoice_detail.InvoiceID = invoice.InvoiceID AND appointment.Status = 'Closed' AND invoice.DatePaid BETWEEN '2023-04-19' AND '2023-04-30' GROUP BY appointment.LocID ORDER BY Revenue DESC LIMIT 3;";
+			$query="SELECT day(date_time) as day, sum(revenue) as revenue from revenue_events where month(date_time)=$month and year(date_time)=$year group by day(date_time) order by revenue desc limit 5";
+			$result = mysqli_query($conn, $query);
 
-$result = mysqli_query($conn, $query);
-
-if(mysqli_num_rows($result) > 0) {
-    echo '<table class="table table-striped">';
-    echo '<thead><tr><th>Location ID</th><th>Address</th><th><th>Revenue</th></tr></thead>';
-    echo '<tbody>';
-    while($row = mysqli_fetch_assoc($result)) {
-      echo '<tr>';
-      echo '<td>'.$row['LocID'].'</td>';
-      echo '<td>'.$row['Address'].'</td>';  
-      echo '<td>$'.$row['Revenue'].'</td>';
-      echo '</tr>';
-    }
+			if(mysqli_num_rows($result) > 0) {
+				echo '<table class="table table-striped">';
+				echo '<thead><tr><th>Day</th><th>Revenue</th><th>Month</th></tr></thead>';
+				echo '<tbody>';
+				while($row = mysqli_fetch_assoc($result)) {
+				echo '<tr>';
+				echo '<td>'.$row['day'].'</td>';
+				echo '<td>'.$row['revenue'].'</td>';  
+				echo '<td>'.$month.'</td>';
+				echo '</tr>';
+				}
 echo '</tbody></table>';
 } else {
 echo '<p>No transactions found.</p>';
