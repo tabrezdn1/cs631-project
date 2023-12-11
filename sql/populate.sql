@@ -167,15 +167,15 @@ INSERT INTO `employees` (`first_name`, `middle_name`, `last_name`, `start_date`,
 
 
 INSERT INTO employees (first_name, middle_name, last_name, start_date, street, city, state, zip, job_type, sup_id, hourly_rate_id, revenue_id) VALUES
-('Alice', 'M.', 'Johnson', '2022-01-10', '123 Oak St', 'City', 'State', '12345', 'Animal Care Specialist', NULL, 1, 1),
-('Bob', 'L.', 'Smith', '2022-02-15', '456 Maple St', 'Town', 'State', '67890', 'Veterinarian', NULL, 2, 2),
-('Charlie', 'A.', 'Williams', '2022-03-20', '789 Pine St', 'Village', 'State', '45678', 'Maintenance', NULL, 3, 3),
-('David', 'K.', 'Miller', '2022-04-25', '101 Elm St', 'City', 'State', '98765', 'Ticket Seller', NULL, 4, 4),
+('Alice', 'M.', 'Johnson', '2022-01-10', '123 Oak St', 'City', 'State', '12345', 'Animal Care Specialist', 1, 1, 1),
+('Bob', 'L.', 'Smith', '2022-02-15', '456 Maple St', 'Town', 'State', '67890', 'Veterinarian', 1, 2, 2),
+('Charlie', 'A.', 'Williams', '2022-03-20', '789 Pine St', 'Village', 'State', '45678', 'Maintenance', 1, 3, 3),
+('David', 'K.', 'Miller', '2022-04-25', '101 Elm St', 'City', 'State', '98765', 'Ticket Seller', 1, 4, 4),
 ('Eva', 'P.', 'Brown', '2022-05-05', '202 Oak St', 'Town', 'State', '34567', 'Animal Care Specialist', 1, 5, 5),
 ('Frank', 'S.', 'Jones', '2022-06-10', '303 Maple St', 'City', 'State', '23456', 'Customer Service', 2, 6, 6),
 ('Grace', 'N.', 'Anderson', '2022-07-15', '404 Pine St', 'Village', 'State', '87654', 'Maintenance', 3, 7, 7),
-('Holly', 'R.', 'White', '2022-08-20', '505 Elm St', 'Town', 'State', '76543', 'Veterinarian', NULL, 8, 8),
-('Ivan', 'T.', 'Lee', '2022-09-25', '606 Oak St', 'City', 'State', '65432', 'Ticket Seller', NULL, 9, 9),
+('Holly', 'R.', 'White', '2022-08-20', '505 Elm St', 'Town', 'State', '76543', 'Veterinarian', 1, 8, 8),
+('Ivan', 'T.', 'Lee', '2022-09-25', '606 Oak St', 'City', 'State', '65432', 'Ticket Seller', 1, 9, 9),
 ('Jack', 'N.', 'Taylor', '2022-10-30', '707 Maple St', 'City', 'State', '54321', 'Customer Service', 6, 10, 10);
 
 
