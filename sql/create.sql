@@ -248,5 +248,5 @@ ALTER TABLE `participates_in`
 --
 ALTER TABLE `revenue_types`
   ADD CONSTRAINT `revenue_types_ibfk_1` FOREIGN KEY (`building_id`) REFERENCES `buildings` (`building_id`);
-COMMIT;
+
 
