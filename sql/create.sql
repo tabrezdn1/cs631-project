@@ -22,16 +22,6 @@ CREATE TABLE `cares_for` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-CREATE TABLE `customer` (
-  `CustomerID` int(5) NOT NULL,
-  `Name` varchar(100) NOT NULL,
-  `Address` varchar(100) NOT NULL,
-  `Phone_Number` varchar(10) NOT NULL,
-  `Credit_Card_No` varchar(16) NOT NULL,
-  `Email` varchar(50) NOT NULL,
-  `Password` varchar(15) NOT NULL,
-  `Username` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `employees` (
@@ -131,12 +121,6 @@ ALTER TABLE `cares_for`
   ADD KEY `emp_id` (`emp_id`);
 
 --
--- Indexes for table `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`CustomerID`);
-
---
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
@@ -196,12 +180,6 @@ ALTER TABLE `animal`
 --
 ALTER TABLE `buildings`
   MODIFY `building_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `customer`
---
-ALTER TABLE `customer`
-  MODIFY `CustomerID` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employees`
