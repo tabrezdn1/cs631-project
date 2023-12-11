@@ -16,16 +16,12 @@ CREATE TABLE `buildings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-CREATE TABLE `customer` (
-  `CustomerID` int(5) NOT NULL,
-  `Name` varchar(100) NOT NULL,
-  `Address` varchar(100) NOT NULL,
-  `Phone_Number` varchar(10) NOT NULL,
-  `Credit_Card_No` varchar(16) NOT NULL,
-  `Email` varchar(50) NOT NULL,
-  `Password` varchar(15) NOT NULL,
-  `Username` varchar(15) NOT NULL
+CREATE TABLE `cares_for` (
+  `species_id` int(11) NOT NULL,
+  `emp_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 
 
 CREATE TABLE `employees` (
@@ -125,12 +121,6 @@ ALTER TABLE `cares_for`
   ADD KEY `emp_id` (`emp_id`);
 
 --
--- Indexes for table `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`CustomerID`);
-
---
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
@@ -183,49 +173,43 @@ ALTER TABLE `species`
 -- AUTO_INCREMENT for table `animal`
 --
 ALTER TABLE `animal`
-  MODIFY `animal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `animal_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `buildings`
 --
 ALTER TABLE `buildings`
-  MODIFY `building_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- AUTO_INCREMENT for table `customer`
---
-ALTER TABLE `customer`
-  MODIFY `CustomerID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `building_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `enclosures`
 --
 ALTER TABLE `enclosures`
-  MODIFY `enclosure_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `enclosure_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `hourly_rate`
 --
 ALTER TABLE `hourly_rate`
-  MODIFY `hourly_rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `hourly_rate_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `revenue_types`
 --
 ALTER TABLE `revenue_types`
-  MODIFY `revenue_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `revenue_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `species`
 --
 ALTER TABLE `species`
-  MODIFY `species_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `species_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
