@@ -4,11 +4,13 @@ include("connection.php");
 $query = "SELECT * FROM employees as E, hourly_rate as H, revenue_types as R where E.hourly_rate_id = H.hourly_rate_id AND E.revenue_id=R.revenue_id ";
 
 $result = mysqli_query($conn, $query);
-$query2= "SELECT * FROM  `revenue_types`  "; 
-    $result = mysqli_query($conn, $query2);
+
+
+	$query2= "SELECT * FROM  `revenue_types`  "; 
+    $result1 = mysqli_query($conn, $query2);
   
     $revenueTypesOptions = "";
-    while ($row = $result->fetch_assoc()) {
+    while ($row = $result1->fetch_assoc()) {
         $revenueTypesOptions .= "<option value='" . $row['revenue_id'] . "'>" . $row['name'] . "</option>";
     }
 ?>
