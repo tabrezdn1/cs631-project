@@ -13,6 +13,13 @@ $result = mysqli_query($conn, $query);
     while ($row = $result1->fetch_assoc()) {
         $revenueTypesOptions .= "<option value='" . $row['revenue_id'] . "'>" . $row['name'] . "</option>";
     }
+	$query2= "SELECT * FROM  `hourly_rate`  "; 
+    $result1 = mysqli_query($conn, $query2);
+  
+    $hourlyTypesTypesOptions = "";
+    while ($row = $result1->fetch_assoc()) {
+        $hourlyTypesTypesOptions .= "<option value='" . $row['hourly_rate_id'] . "'>" . $row['rate'] . "</option>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -120,10 +127,8 @@ $result = mysqli_query($conn, $query);
 						<form method="POST">
 							<div>
 								<select name="hourlyRate" id="hourlyRate">
-									<option value="1">$15.50</option>
-									<option value="2">$18.75</option>
-									<option value="3">$30.00</option>
-									<option value="4">$50.00</option>
+								<?php echo $hourlyTypesTypesOptions; ?>
+									
 								</select>
 								<input type="hidden" name="eid" value="<?php echo $row['emp_id']; ?>">
 							<input type="submit" name="update_employee_hourly_rate" value="Update">
