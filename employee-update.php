@@ -62,6 +62,7 @@ $result = mysqli_query($conn, $query);
 			<th>Job Type</th>
 			<th>Change Job Type</th>
 			<th>Working Area</th>
+			<th>Change Working Area</th>
 			<th>Hourly Rate</th>
 			<th>Change Hourly Rate</th>
 			<th>Actions</th>
