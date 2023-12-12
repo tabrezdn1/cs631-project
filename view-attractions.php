@@ -44,20 +44,17 @@ include 'connection.php';
 
   <?php
   if (mysqli_num_rows($result) > 0) {
-    echo "<table><tr><th>RevenueID</th><th>Name</th><th>Building Name</th><th>Senior Price</th><th>Adult Price</th><th>Child Price</th><th>Shows per day</th></tr>";
+    echo "<table><tr><th>Name</th><th>Building Name</th><th>Senior Price</th><th>Adult Price</th><th>Child Price</th><th>Shows per day</th></tr>";
     while($row = mysqli_fetch_assoc($result)) {
      
-      $revenue_id = $row['revenue_id'];
       $name = $row['name'];
-      
       $building_name = $row['Bname'];
       $senior_price = $row['senior_price'];
       $adult_price = $row['adult_price'];
       $child_price = $row['child_price'];
-      
       $shows_per_day = $row['shows_per_day'];
 
-      echo "<tr><td>$revenue_id</td><td>$name</td><td>$building_name</td><td>$senior_price</td><td>$adult_price</td><td>$child_price</td><td>$shows_per_day</td></tr>";
+      echo "<tr><td>$name</td><td>$building_name</td><td>$senior_price</td><td>$adult_price</td><td>$child_price</td><td>$shows_per_day</td></tr>";
 
       
     }
