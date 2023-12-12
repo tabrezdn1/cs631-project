@@ -144,7 +144,7 @@ revenue for each attraction, concession, and total attendance</p>
 			// 	$name='Zoo Admission';
 			// }
 
-			$query = "SELECT name, avg(revenue) as revenue, type from revenue_events where date(date_time) between '$start_date' and '$end_date' group by name order by type";
+			$query = "SELECT name, round(avg(revenue),2) as revenue, type from revenue_events where date(date_time) between '$start_date' and '$end_date' group by name order by type";
 
 $result = mysqli_query($conn, $query);
 
