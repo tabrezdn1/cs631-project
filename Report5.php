@@ -144,19 +144,20 @@ revenue for each attraction, concession, and total attendance</p>
 			// 	$name='Zoo Admission';
 			// }
 
-			$query = "SELECT name, round(avg(revenue),2) as revenue, type from revenue_events where date(date_time) between '$start_date' and '$end_date' group by name order by type";
+			$query = "SELECT name, round(avg(revenue),2) as revenue, type, quantity from revenue_events where date(date_time) between '$start_date' and '$end_date' group by name order by type";
 
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0) {
     echo '<table class="table table-striped">';
-    echo '<thead><tr><th>Name</th><th>Revenue</th><th>Type</th></tr></thead>';
+    echo '<thead><tr><th>Name</th><th>Average Revenue</th><th>Type</th><th>Total attendance</th></tr></thead>';
     echo '<tbody>';
     while($row = mysqli_fetch_assoc($result)) {
       echo '<tr>';
       echo '<td>'.$row['name'].'</td>';
       echo '<td>'.$row['revenue'].'</td>';
-	  echo '<td>'.$row['type'].'</td>';    
+	  echo '<td>'.$row['type'].'</td>'; 
+	  echo '<td>'.$row['quantity'].'</td>';    
       echo '</tr>';
     }
 echo '</tbody></table>';
