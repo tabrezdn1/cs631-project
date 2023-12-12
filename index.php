@@ -2,7 +2,7 @@
   require('connection.php');
   session_start();
 
-  $query = "SELECT * FROM `revenue_types` where Rtype='Animal Shows' or Rtype='Zoo Admission' "; 
+  $query = "SELECT * FROM `revenue_types` where Rtype='Animal Show' or Rtype='Zoo Admission' "; 
   $result = mysqli_query($conn, $query);
 
   $options = "";
