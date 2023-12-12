@@ -155,7 +155,7 @@ if(isset($_POST['register']))
 if(isset($_POST['admin']))
 {
    $emp_id = mysqli_real_escape_string($conn, $_POST['Emp_ID']);
-   $query="SELECT * FROM `manager` WHERE `EmpID`='$emp_id' ";
+   $query="SELECT * FROM `admin` WHERE `EmpID`='$emp_id' ";
    
    $result=mysqli_query($conn,$query);
    
