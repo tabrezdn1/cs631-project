@@ -143,7 +143,7 @@ animal care specialists (assume a 40 hour work week)</p>
 
 		if(mysqli_num_rows($result) > 0) {
 			echo '<table class="table table-striped">';
-			echo '<thead><tr><th>Species</th><th>Total Population</th><th>Young Status</th><th>Healthy Status</th><th>Sick Status</th><th>Adult Status</th><th>Total Montly Food Cost</th><th>Total Cost of Veterinarians</th><th>Total Hourly Cost of Animal Care Specialist</th></tr></thead>';
+			echo '<thead><tr><th>Species</th><th>Total Population</th><th>Young Status</th><th>Healthy Status</th><th>Sick Status</th><th>Old Status</th><th>Total Montly Food Cost</th><th>Total Cost of Veterinarians</th><th>Total Hourly Cost of Animal Care Specialist</th></tr></thead>';
 			echo '<tbody>';
 			while($row = mysqli_fetch_assoc($result)) {
 			echo '<tr>';
