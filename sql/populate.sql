@@ -233,7 +233,7 @@ INSERT INTO revenue_events (date_time, revenue_id, revenue, quantity, name, type
 ('2023-10-03 14:45:00', 3, 800.00, 20, 'Special Exhibit Tickets', 'Zoo Admission'),
 ('2023-10-04 11:15:00', 4, 300.00, 15, 'Parking Fees', 'Zoo Admission');
 
-INSERT INTO `manager` (`EmpID`, `Password`, `Name`, `Role`, `Salary`, `SSN`, `HireDate`, `LocID`) VALUES
+INSERT INTO `admin` (`EmpID`, `Password`, `Name`, `Role`, `Salary`, `SSN`, `HireDate`, `LocID`) VALUES
 (1250, '123', 'John', 'M', '50000', '123456789', '2023-04-21', 1),
 (1251, '1234', 'Jack', 'M', '51000', '123456789', '2022-09-01', 2),
 (1252, '1234', 'Mike', 'M', '51000', '123490789', '2020-06-14', 3),

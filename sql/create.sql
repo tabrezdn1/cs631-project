@@ -52,7 +52,7 @@ CREATE TABLE `hourly_rate` (
   `rate` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `manager` (
+CREATE TABLE `admin` (
   `EmpID` int(5) NOT NULL,
   `Password` varchar(123) NOT NULL,
   `Name` varchar(20) NOT NULL,
