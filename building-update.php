@@ -40,8 +40,9 @@ $result = mysqli_query($conn, $query);
 	<table>
 		<thead>
 			<tr>
-				<th>Building ID</th>
+				
 				<th>Building Name</th>
+				<th>Change Building Name</th>
 				<th>Type</th>
 				<th>Update Type</th>
 				
@@ -50,17 +51,25 @@ $result = mysqli_query($conn, $query);
 		<tbody>
 			<?php while ($row = mysqli_fetch_assoc($result)) { ?>
 				<tr>
-					<td><?php echo $row['building_id']; ?></td>
+					
 					<td><?php echo $row['Bname']; ?></td>
+					<td>
+						<form method="POST">
+							<input type="text" name="newName" value="">
+							<input type="hidden" name="bid" value="<?php echo $row['building_id']; ?>">
+							<input type="submit" name="update_building_name" value="Update">
+						</form>
+					</td>
 					<td><?php echo $row['type']; ?></td>
 					<td>
 						<form method="POST">
 							<div>
 								<select name="typeOpt" id="status">
-									<option value="Exhibit">Exhibit</option>
-									<option value="Aviary">Aviary</option>
-									<option value="Aquatic">Aquatic</option>
-									<option value="Interactive">Interactive</option>
+									<option value="Animal Exhibit">Animal Exhibit</option>
+									<option value="Bird Exhibit">Bird Exhibit</option>
+									<option value="Aquarium">Aquarium</option>
+									<option value="Insect Exhibit">Insect Exhibit</option>
+									<option value="Shop">Shop</option>
 								</select>
 								<input type="hidden" name="bid" value="<?php echo $row['building_id']; ?>">
 							<input type="submit" name="update_animal" value="Update">
@@ -91,6 +100,13 @@ $result = mysqli_query($conn, $query);
 		$bid = $_POST['bid'];
 		$status = $_POST['typeOpt'];
 		$query = "UPDATE buildings SET type ='$status' WHERE building_id = $bid";
+		mysqli_query($conn, $query);
+		// header("Refresh:0");
+	}
+	if (isset($_POST['update_building_name'])) {
+		$bid = $_POST['bid'];
+		$status = $_POST['newName'];
+		$query = "UPDATE buildings SET BName ='$status' WHERE building_id = $bid";
 		mysqli_query($conn, $query);
 		// header("Refresh:0");
 	}

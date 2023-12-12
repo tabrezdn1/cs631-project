@@ -61,12 +61,12 @@ $result = mysqli_query($conn, $query);
 						</form>
 					</td>
 					
-					<td>
+					<!-- <td>
 						<form method="post">
 							<input type="hidden" name="rid" value="<?php echo $row['hourly_rate_id']; ?>">
 							<input type="submit" name="delete_rate" value="Delete">
 						</form>
-					</td>
+					</td> -->
 				</tr>
 			<?php } ?>
 		</tbody>

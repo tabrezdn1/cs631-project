@@ -15,6 +15,14 @@ $query1= "SELECT * FROM  `hourly_rate`  ";
     while ($row = $result->fetch_assoc()) {
         $revenueTypesOptions .= "<option value='" . $row['revenue_id'] . "'>" . $row['name'] . "</option>";
     }
+    $query3= "SELECT * FROM  `employees`  where emp_id BETWEEN 1 AND 5"; 
+    $result3 = mysqli_query($conn, $query3);
+  
+    $ManagerTypesOptions = "";
+    while ($row = $result3->fetch_assoc()) {
+        $ManagerTypesOptions .= "<option value='" . $row['emp_id'] . "'>" . $row['first_name'] ." " . $row['middle_name'] ." " .$row['last_name'] ."</option>";
+    }
+    
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve user inputs
     $first_name = $_POST['first_name'];
@@ -132,14 +140,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="sup_id">Supervisor:</label>
                 <select class="form-control" name="sup_id" required>
                     <option value="">Select Supervisor</option>
-                    <option value="1">Manager</option>
+                    <?php echo $ManagerTypesOptions; ?>
+                    
                     
                     
                 </select>
             </div>
             <div class="form-group">
                 <label for="revenue_id">Working Area:</label>
-                <select class="form-control" name="revenue_id" required>
+                <select class="form-control" name="revenue_id">
                     <option value="">Select Area</option>
                     <?php echo $revenueTypesOptions; ?>
                     

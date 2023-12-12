@@ -1,9 +1,16 @@
 <?php
 include("connection.php");
 
-$query = "SELECT * FROM revenue_types as R, buildings as B where R.building_id=B.building_id";
+$query = "SELECT * FROM revenue_types as R, buildings as B where R.building_id=B.building_id AND Rtype='Animal Show'";
 
 $result = mysqli_query($conn, $query);
+$query2= "SELECT * FROM  `buildings`  "; 
+    $result1 = mysqli_query($conn, $query2);
+  
+    $buildingTypesOptions = "";
+    while ($row = $result1->fetch_assoc()) {
+        $buildingTypesOptions .= "<option value='" . $row['building_id'] . "'>" . $row['Bname'] . "</option>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -41,8 +48,9 @@ $result = mysqli_query($conn, $query);
 		<thead>
 			<tr>
 				<th>Name</th>
-				
+				<th>Attraction Name</th>
 				<th>Building Name</th>
+				<th> Change Building Name</th>
 				<th>Senior Ticket Price</th>
 				<th>Change Senior Price</th>
 				<th>Adult Ticket Price</th>
@@ -58,8 +66,30 @@ $result = mysqli_query($conn, $query);
 			<?php while ($row = mysqli_fetch_assoc($result)) { ?>
 				<tr>
 					<td><?php echo $row['name']; ?></td>
-					
+					<td>
+						<form method="POST">
+							<div>
+								<input type="text" name="newName" value="">
+								<input type="hidden" name="rid" value="<?php echo $row['revenue_id']; ?>">
+								<input type="submit" name="change_newName" value="Update">
+							</div>
+							
+						</form>
+					</td>
 					<td><?php echo $row['Bname']; ?></td>
+					<td>
+						<form method="POST">
+							<div>
+								<select name="BuildingName" id="BuildingName">
+								<?php echo $buildingTypesOptions; ?>
+									
+								</select>
+								<input type="hidden" name="rid" value="<?php echo $row['revenue_id']; ?>">
+							<input type="submit" name="update_BuildingName" value="Update">
+							</div>
+							
+						</form>
+					</td>
 					<td>$<?php echo $row['senior_price']; ?></td>
 					<td>
 						<form method="POST">
@@ -107,12 +137,12 @@ $result = mysqli_query($conn, $query);
 						</form>
 					</td>
 					
-					<td>
+					<!-- <td>
 						<form method="post">
 							<input type="hidden" name="rid" value="<?php echo $row['revenue_id']; ?>">
 							<input type="submit" name="delete_revenue_id" value="Delete">
 						</form>
-					</td>
+					</td> -->
 				</tr>
 			<?php } ?>
 		</tbody>
@@ -152,6 +182,20 @@ $result = mysqli_query($conn, $query);
 		$rid = $_POST['rid'];
 		$status = $_POST['show_per_day1'];
 		$query = "UPDATE revenue_types SET shows_per_day ='$status' WHERE revenue_id = $rid";
+		mysqli_query($conn, $query);
+		//header("Refresh:5");
+	}
+	if (isset($_POST['change_newName'])) {
+		$rid = $_POST['rid'];
+		$status = $_POST['newName'];
+		$query = "UPDATE revenue_types SET name ='$status' WHERE revenue_id = $rid";
+		mysqli_query($conn, $query);
+		//header("Refresh:5");
+	}
+	if (isset($_POST['update_BuildingName'])) {
+		$rid = $_POST['rid'];
+		$status = $_POST['BuildingName'];
+		$query = "UPDATE revenue_types SET building_id ='$status' WHERE revenue_id = $rid";
 		mysqli_query($conn, $query);
 		//header("Refresh:5");
 	}
